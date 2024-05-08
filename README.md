@@ -2,8 +2,8 @@
 
 ## Contenido
 
-- [**Archivo DDL**](Ver](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DDL.sql)):  Este archivo SQL establece la estructura de la base de datos, junto con las relaciones entre las diferentes entidades.
-- [**Archivo DML**]([Ver](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DML.sql)):  Este archivo SQL muestra la realización de las inserciones de datos en tablas de la base de datos.
+- [**Archivo DDL**][Ver](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DDL.sql):  Este archivo SQL establece la estructura de la base de datos, junto con las relaciones entre las diferentes entidades.
+- [**Archivo DML**][Ver](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DML.sql):  Este archivo SQL muestra la realización de las inserciones de datos en tablas de la base de datos.
 - 
 ## Diagrama Entidad - Relación
 
