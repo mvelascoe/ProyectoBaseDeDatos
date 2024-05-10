@@ -350,6 +350,25 @@ INSERT INTO pago  VALUES (25, '2007-10-06', 3321, 35, 2);
 INSERT INTO pago  VALUES (26, '2006-05-26', 1171, 38, 3);
 
 -- ----------------------------------------------------
+-- INSERT DIMENSIONES
+-- ----------------------------------------------------
+INSERT INTO dimensiones VALUES ('DIM001', '100', '50', '30', '10');
+INSERT INTO dimensiones VALUES ('DIM002', '80', '40', '25', '8');
+INSERT INTO dimensiones VALUES ('DIM003', '120', '60', '35', '12');
+INSERT INTO dimensiones VALUES ('DIM004', '90', '45', '28', '9');
+INSERT INTO dimensiones VALUES ('DIM005', '110', '55', '32', '11');
+INSERT INTO dimensiones VALUES ('DIM006', '95', '47', '29', '9.5');
+INSERT INTO dimensiones VALUES ('DIM007', '105', '52', '31', '10.5');
+INSERT INTO dimensiones VALUES ('DIM008', '85', '42', '26', '8.5');
+INSERT INTO dimensiones VALUES ('DIM009', '115', '57', '33', '11.5');
+INSERT INTO dimensiones VALUES ('DIM010', '125', '62', '36', '12.5');
+INSERT INTO dimensiones VALUES ('DIM011', '130', '65', '38', '13');
+INSERT INTO dimensiones VALUES ('DIM012', '75', '37', '23', '7.5');
+INSERT INTO dimensiones VALUES ('DIM013', '140', '70', '40', '14');
+INSERT INTO dimensiones VALUES ('DIM014', '70', '35', '22', '7');
+INSERT INTO dimensiones VALUES ('DIM015', '150', '75', '45', '15');
+
+-- ----------------------------------------------------
 -- INSERT PRODUCTO
 -- ----------------------------------------------------
 INSERT INTO producto VALUES ('PRD001', 'Ramo de Rosas Rojas', 1, 50, 35.99, 'Ramo de rosas rojas frescas', 'DIM001');
@@ -373,33 +392,12 @@ INSERT INTO producto VALUES ('PRD018', 'Naranjo', 4, 20, 35.75, 'Árbol de naran
 INSERT INTO producto VALUES ('PRD019', 'Dalia', 5, 32, 22.99, 'Flores de dalia en varios colores', 'DIM008');
 INSERT INTO producto VALUES ('PRD020', 'Azalea', 5, 28, 28.50, 'Planta de azalea para jardines', 'DIM004');
 INSERT INTO producto VALUES ('PRD021', 'Begonia', 5, 35, 15.75, 'Flores de begonia en maceta', 'DIM009');
-INSERT INTO producto VALUES ('PRD023', 'Caléndula', 6, 30, 12.50, 'Flores de caléndula para jardinería', 'DIM002');
-INSERT INTO producto VALUES ('PRD024', 'Petunia', 6, 35, 17.75, 'Flores de petunia para macetas', 'DIM005');
 INSERT INTO producto VALUES ('PRD025', 'Semillas de Tomate', 4, 50, 5.99, 'Paquete de semillas de tomate', 'DIM013');
 INSERT INTO producto VALUES ('PRD026', 'Kit de Plantación', 2, 60, 29.99, 'Kit completo para plantar en el jardín', 'DIM003');
 INSERT INTO producto VALUES ('PRD027', 'Fertilizante Orgánico', 5, 45, 8.75, 'Fertilizante natural para plantas', 'DIM004');
 INSERT INTO producto VALUES ('PRD028', 'Terrario de Suculentas', 5, 20, 42.50, 'Terrario con variedad de suculentas', 'DIM005');
 INSERT INTO producto VALUES ('PRD029', 'Kit de Jardinería Infantil', 2, 15, 19.99, 'Kit de jardinería para niños', 'DIM002');
 INSERT INTO producto VALUES ('PRD030', 'Set de Macetas de Cerámica', 5, 40, 55.99, 'Set de macetas de colores', 'DIM015');
-
--- ----------------------------------------------------
--- INSERT DIMENSIONES
--- ----------------------------------------------------
-INSERT INTO dimensiones VALUES ('DIM001', '100', '50', '30', '10');
-INSERT INTO dimensiones VALUES ('DIM002', '80', '40', '25', '8');
-INSERT INTO dimensiones VALUES ('DIM003', '120', '60', '35', '12');
-INSERT INTO dimensiones VALUES ('DIM004', '90', '45', '28', '9');
-INSERT INTO dimensiones VALUES ('DIM005', '110', '55', '32', '11');
-INSERT INTO dimensiones VALUES ('DIM006', '95', '47', '29', '9.5');
-INSERT INTO dimensiones VALUES ('DIM007', '105', '52', '31', '10.5');
-INSERT INTO dimensiones VALUES ('DIM008', '85', '42', '26', '8.5');
-INSERT INTO dimensiones VALUES ('DIM009', '115', '57', '33', '11.5');
-INSERT INTO dimensiones VALUES ('DIM010', '125', '62', '36', '12.5');
-INSERT INTO dimensiones VALUES ('DIM011', '130', '65', '38', '13');
-INSERT INTO dimensiones VALUES ('DIM012', '75', '37', '23', '7.5');
-INSERT INTO dimensiones VALUES ('DIM013', '140', '70', '40', '14');
-INSERT INTO dimensiones VALUES ('DIM014', '70', '35', '22', '7');
-INSERT INTO dimensiones VALUES ('DIM015', '150', '75', '45', '15');
 
 -- ----------------------------------------------------
 -- INSERT PROVEEDORES
@@ -475,7 +473,6 @@ INSERT INTO producto_proveedor VALUES ('PRD030', 30, 27.99);
 
 -- Inserts para la tabla pedido
 INSERT INTO pedido VALUES ('PED001', '2024-01-10', '2024-01-15', '2024-01-15', 'Sin comentarios', 1, 1);
-INSERT INTO pedido VALUES ('PED002', '2024-01-11', '2024-01-16', '2024-01-16', 'Sin comentarios', 2, 2);
 INSERT INTO pedido VALUES ('PED003', '2024-01-12', '2024-01-17', '2024-01-17', 'Sin comentarios', 3, 3);
 INSERT INTO pedido VALUES ('PED004', '2024-01-13', '2024-01-18', NULL, 'Sin comentarios', 4, 1);
 INSERT INTO pedido VALUES ('PED005', '2024-01-14', '2024-01-19', '2024-01-19', 'Sin comentarios', 5, 2);
@@ -507,20 +504,17 @@ INSERT INTO pedido VALUES ('PED030', '2009-02-08', '2009-02-13', '2009-02-13', '
 INSERT INTO pedido VALUES ('PED031', '2009-02-09', '2009-02-14', '2009-02-14', 'Sin comentarios', 31, 2);
 INSERT INTO pedido VALUES ('PED032', '2009-02-10', '2009-02-15', '2009-02-15', 'Sin comentarios', 32, 3);
 INSERT INTO pedido VALUES ('PED033', '2009-02-11', '2009-02-16', '2009-02-16', 'Sin comentarios', 33, 1);
-INSERT INTO pedido VALUES ('PED034', '2009-02-12', '2009-02-17', '2009-02-17', 'Sin comentarios', 34, 2);
 INSERT INTO pedido VALUES ('PED035', '2009-02-13', '2009-02-18', '2009-02-18', 'Sin comentarios', 35, 3);
 INSERT INTO pedido VALUES ('PED036', '2009-02-14', '2009-02-19', '2009-02-19', 'Sin comentarios', 36, 1);
 INSERT INTO pedido VALUES ('PED037', '2009-02-15', '2009-02-20', '2009-02-20', 'Sin comentarios', 37, 2);
 INSERT INTO pedido VALUES ('PED038', '2009-02-16', '2009-02-21', '2009-02-21', 'Sin comentarios', 38, 3);
 INSERT INTO pedido VALUES ('PED039', '2009-02-17', '2009-02-22', '2009-02-22', 'Sin comentarios', 1, 1);
-INSERT INTO pedido VALUES ('PED040', '2009-02-18', '2009-02-23', '2009-02-23', 'Sin comentarios', 2, 2);
 
 
 -- ----------------------------------------------------
 -- INSERT DETALLE DE PEDIDO
 -- ----------------------------------------------------
 INSERT INTO detalle_pedido VALUES ('PRD001', 'PED001', 5, 12.50, 1);
-INSERT INTO detalle_pedido VALUES ('PRD002', 'PED002', 3, 15.99, 2);
 INSERT INTO detalle_pedido VALUES ('PRD003', 'PED003', 2, 8.75, 3);
 INSERT INTO detalle_pedido VALUES ('PRD004', 'PED004', 4, 10.99, 4);
 INSERT INTO detalle_pedido VALUES ('PRD005', 'PED005', 6, 7.99, 5);
@@ -540,19 +534,11 @@ INSERT INTO detalle_pedido VALUES ('PRD018', 'PED018', 3, 21.50, 18);
 INSERT INTO detalle_pedido VALUES ('PRD019', 'PED019', 2, 19.99, 19);
 INSERT INTO detalle_pedido VALUES ('PRD020', 'PED020', 6, 14.50, 20);
 INSERT INTO detalle_pedido VALUES ('PRD021', 'PED021', 1, 27.75, 21);
-INSERT INTO detalle_pedido VALUES ('PRD022', 'PED022', 3, 23.99, 22);
-INSERT INTO detalle_pedido VALUES ('PRD023', 'PED023', 4, 30.50, 23);
-INSERT INTO detalle_pedido VALUES ('PRD024', 'PED024', 2, 25.99, 24);
 INSERT INTO detalle_pedido VALUES ('PRD025', 'PED025', 3, 18.75, 25);
 INSERT INTO detalle_pedido VALUES ('PRD026', 'PED026', 5, 22.99, 26);
 INSERT INTO detalle_pedido VALUES ('PRD027', 'PED027', 2, 26.50, 27);
 INSERT INTO detalle_pedido VALUES ('PRD028', 'PED028', 3, 14.99, 28);
 INSERT INTO detalle_pedido VALUES ('PRD029', 'PED029', 4, 31.75, 29);
-INSERT INTO detalle_pedido VALUES ('PRD025', 'PED025', 3, 19.99, 25);
-INSERT INTO detalle_pedido VALUES ('PRD026', 'PED026', 2, 15.50, 26);
-INSERT INTO detalle_pedido VALUES ('PRD027', 'PED027', 4, 28.75, 27);
-INSERT INTO detalle_pedido VALUES ('PRD028', 'PED028', 5, 22.99, 28);
-INSERT INTO detalle_pedido VALUES ('PRD029', 'PED029', 2, 17.99, 29);
 INSERT INTO detalle_pedido VALUES ('PRD030', 'PED030', 3, 24.50, 30);
 INSERT INTO detalle_pedido VALUES ('PRD025', 'PED031', 4, 30.99, 31);
 INSERT INTO detalle_pedido VALUES ('PRD026', 'PED032', 2, 16.75, 32);
