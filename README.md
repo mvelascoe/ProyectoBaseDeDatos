@@ -2606,6 +2606,380 @@ Con operadores básicos de comparación
   +----------------------+---------------+
   ```
 
+## CREATE VIEW
+
+
+
+1. Devuelve un listado con el código de oficina y la ciudad donde hay oficinas.
+
+   ```sql
+   CREATE VIEW vista_oficinas AS
+   SELECT o.codigo_oficina AS 'Codigo Oficina', c.nombre_ciudad AS 'Ciudad'
+   FROM oficina o
+   INNER JOIN ciudad c ON o.codigo_ciudad = c.codigo_ciudad;
+   
+   SELECT Codigo Oficina, Ciudad
+   FROM vista_oficinas;
+   ```
+
+
+
+2. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
+   jefe tiene un código de jefe igual a 7.
+
+   ```sql
+   CREATE VIEW vista_empleados_jefe_7 AS
+   SELECT nombre_empleado AS 'Nombre', 
+          apellido1_empleado AS 'Primer Apellido', 
+          apellido2_empleado AS 'Segundo Apellido', 
+          email_empleado AS 'Email'
+   FROM empleado
+   WHERE codigo_jefe = 7;
+   
+   SELECT Nombre
+   FROM vista_empleados_jefe_7;
+   ```
+
+   
+
+3. Devuelve un listado indicando todas las ciudades donde hay oficinas y el
+   número de empleados que tiene.
+
+   ```sql
+   CREATE VIEW vista_num_empleados_por_ciudad AS
+   SELECT c.nombre_ciudad AS Ciudad, COUNT(e.codigo_empleado) AS Num_Empleados
+   FROM ciudad c
+   INNER JOIN oficina o ON c.codigo_ciudad = o.codigo_ciudad
+   LEFT JOIN empleado e ON o.codigo_oficina = e.codigo_oficina
+   GROUP BY c.nombre_ciudad;
+   
+   SELECT Ciudad, Num_Empleados  
+   FROM vista_num_empleados_por_ciudad;
+   ```
+
+   
+
+4. Devuelve el producto que menos unidades tiene en stock.
+
+   ```sql
+   CREATE VIEW vista_producto_min_stock AS
+   SELECT nombre
+   FROM producto
+   WHERE cantidad_stock <= ALL (
+       SELECT cantidad_stock
+       FROM producto
+   );
+   
+   SELECT nombre 
+   FROM vista_producto_min_stock;
+   ```
+
+   
+
+5. Calcula la suma de la cantidad total de todos los productos que aparecen en
+   cada uno de los pedidos.
+
+   ```sql
+   CREATE VIEW vista_cantidad_total_productos_pedido AS
+   SELECT codigo_pedido, SUM(cantidad) AS cantidad_total_productos
+   FROM detalle_pedido
+   GROUP BY codigo_pedido;
+   
+   SELECT  codigo_pedido, cantidad_total_productos
+   FROM vista_cantidad_total_productos_pedido;
+   ```
+
+   
+
+6. Devuelve un listado que muestre el nombre de cada empleados, el nombre
+   de su jefe y el nombre del jefe de sus jefe.
+
+   ```sql
+   CREATE VIEW vista_jerarquia_empleados AS
+   SELECT e1.nombre_empleado AS 'Empleado', 
+          e2.nombre_empleado AS 'Jefe', 
+          e3.nombre_empleado AS 'Jefe del Jefe'
+   FROM empleado AS e1
+   LEFT JOIN empleado AS e2 ON e1.codigo_jefe = e2.codigo_empleado
+   LEFT JOIN empleado AS e3 ON e2.codigo_jefe = e3.codigo_empleado;
+   
+   SELECT Empleado, Jefe, Jefe del Jefe
+   FROM vista_jerarquia_empleados;
+   ```
+
+   
+
+7. Devuelve un listado con todas las formas de pago que aparecen en la
+   tabla pago. Tenga en cuenta que no deben aparecer formas de pago
+   repetidas.
+
+   ```sql
+   CREATE VIEW vista_metodos_pago AS
+   SELECT DISTINCT codigo_metodo_pago, nombre_met_pago
+   FROM metodo_pago;
+   
+   SELECT codigo_metodo_pago, nombre_met_pago
+   FROM vista_metodos_pago;
+   ```
+
+   
+
+8. Muestra el nombre de los clientes que hayan realizado pagos junto con el
+   nombre de sus representantes de ventas.
+
+   ```sql
+   CREATE VIEW vista_ventas_cliente AS
+   SELECT c.nombre_cliente AS 'Nombre Cliente', 
+          e.nombre_empleado AS 'Nombre Asesor Ventas', 
+          e.apellido1_empleado AS 'Apellido Asesor Ventas'
+   FROM cliente AS c
+   JOIN empleado AS e ON c.codigo_rep_ventas = e.codigo_empleado
+   JOIN pago AS p ON c.codigo_cliente = p.codigo_cliente;
+   
+   SELECT nombre_cliente, nombre_empleado, apellido1_empleado
+   FROM vista_ventas_cliente;
+   ```
+
+   
+
+9. Devuelve un listado con los distintos estados por los que puede pasar un
+   pedido.
+
+   ```sql
+   CREATE VIEW vista_estados AS
+   SELECT nombre AS ESTADOS
+   FROM estado;
+   
+   SELECT ESTADOS
+   FROM vista_estados;
+   ```
+
+   
+
+10. Devuelve un listado con todos los productos que pertenecen a la
+    gama Ornamentales y que tienen más de 100 unidades en stock. El listado
+    deberá estar ordenado por su precio de venta, mostrando en primer lugar
+    los de mayor precio.
+
+    ```sql
+    CREATE VIEW vista_productos_gama_stock AS
+    SELECT p.codigo_producto, p.nombre, p.codigo_gama, p.cantidad_stock, p.precio_venta, p.descripcion, p.codigo_dimensiones
+    FROM producto AS p
+    WHERE codigo_gama = 5 AND cantidad_stock > 100
+    ORDER BY precio_venta DESC;
+    
+    SELECT codigo_producto, nombre, codigo_gama, cantidad_stock, precio_venta, descripcion, codigo_dimensiones
+    FROM vista_productos_gama_stock
+    ```
+
+
+
+## PROCEDIMIENTOS
+
+
+
+1. Eliminar un producto
+
+   ```sql
+   DELIMITER $$
+   CREATE PROCEDURE eliminar_producto(
+       IN p_codigo_producto VARCHAR(15)
+   )
+   BEGIN
+       DELETE FROM producto
+       WHERE codigo_producto = p_codigo_producto;
+   END $$
+   DELIMITER ;
+   
+   CALL eliminar_producto('PRD001');
+   ```
+
+   
+
+2. Insertar un País
+
+```sql
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insert_pais;
+CREATE PROCEDURE insert_pais(
+	IN id VARCHAR(5),
+	IN nombre_pais VARCHAR(50)
+)
+BEGIN
+	INSERT INTO pais VALUES (id,nombre_pais);
+END $$
+DELIMITER ;
+
+CALL insert_pais('ARG','Argentina');
+```
+
+3. Insertar nuevo estado de pedido
+
+   ```sql
+   DELIMITER $$
+   DROP PROCEDURE IF EXISTS insertar_estado;
+   CREATE PROCEDURE insertar_estado(
+   	IN nombre VARCHAR(25)
+   )
+   BEGIN 
+   	INSERT INTO estado VALUES (NULL,nombre);
+   END $$
+   
+   DELIMITER ;
+   
+   CALL insertar_estado('En reparto');
+   ```
+
+   
+
+4. Eliminar un proveedor por id
+
+   ```sql
+   DELIMITER $$
+   DROP PROCEDURE IF EXISTS eliminar_proveedor;
+   CREATE PROCEDURE eliminar_proveedor(
+   	IN codigo VARCHAR(5)
+   )
+   BEGIN
+   	DELETE FROM proveedor WHERE codigo_proveedor = codigo;
+   END $$
+   DELIMITER ;
+   
+   CALL eliminar_proveedor (32);
+   
+   ```
+
+
+
+5. Ingresar un nuevo producto
+
+   ```sql
+   DELIMITER $$
+   
+   CREATE PROCEDURE ingresar_producto(
+       IN p_codigo_producto VARCHAR(15),
+       IN p_nombre VARCHAR(70),
+       IN p_codigo_gama INT,
+       IN p_cantidad_stock SMALLINT,
+       IN p_precio_venta DECIMAL(15,2),
+       IN p_descripcion TEXT,
+       IN p_codigo_dimensiones VARCHAR(15)
+   )
+   BEGIN
+       INSERT INTO producto (codigo_producto, nombre, codigo_gama, cantidad_stock, precio_venta, descripcion, codigo_dimensiones)
+       VALUES (p_codigo_producto, p_nombre, p_codigo_gama, p_cantidad_stock, p_precio_venta, p_descripcion, p_codigo_dimensiones);
+   END $$
+   
+   DELIMITER ;
+   
+   CALL ingresar_producto('PRD033', 'Ramo de Rosas amarillas', 1, 50, 35.20, 'Ramo de rosas rojas', 'DIM001');
+   ```
+
+
+
+6. Actualizar telefono de cliente 
+
+   ```sql
+   DELIMITER $$
+   
+   CREATE PROCEDURE actualizar_telefono_cliente(
+       IN p_codigo_cliente INT,
+       IN p_nuevo_telefono VARCHAR(50)
+   )
+   BEGIN
+       UPDATE telefono_cliente
+       SET telefono_cliente = p_nuevo_telefono
+       WHERE codigo_cliente = p_codigo_cliente;
+   END $$
+   
+   DELIMITER ;
+   
+   CALL actualizar_telefono_cliente(20, '65894525');
+   ```
+
+
+
+7. Actualizar Precio de Venta de un Producto
+
+   ```sql
+   DELIMITER $$
+   
+   CREATE PROCEDURE actualizar_precio_venta(
+       IN p_codigo_producto VARCHAR(15),
+       IN p_nuevo_precio DECIMAL(15,2)
+   )
+   BEGIN
+       UPDATE producto
+       SET precio_venta = p_nuevo_precio
+       WHERE codigo_producto = p_codigo_producto;
+   END $$
+   
+   DELIMITER ;
+   
+   CALL actualizar_precio_venta('PRD001', 41.11);
+   ```
+
+
+
+8. Buscar Productos por Nombre
+
+   ```sql
+   DELIMITER $$
+   
+   CREATE PROCEDURE buscar_productos_por_nombre(
+       IN p_termino_busqueda VARCHAR(100)
+   )
+   BEGIN
+       SELECT nombre, cantidad_stock, precio_venta
+       FROM producto
+       WHERE nombre LIKE CONCAT('%', p_termino_busqueda, '%');
+   END $$
+   
+   DELIMITER ;
+   
+   CALL buscar_productos_por_nombre('Ramo de Rosas Rojas');
+   
+   ```
+
+
+
+9. Listar Pedidos por Cliente
+
+   ```sql
+   DELIMITER $$
+   
+   CREATE PROCEDURE listar_pedidos_por_cliente(
+       IN p_codigo_cliente INT
+   )
+   BEGIN
+       SELECT * FROM pedido
+       WHERE codigo_cliente = p_codigo_cliente;
+   END $$
+   
+   DELIMITER ;
+   
+   CALL listar_pedidos_por_cliente(15);
+   ```
+
+
+
+10. Calcular Total de Pagos por Cliente
+
+    ```sql
+    DELIMITER $$
+    
+    CREATE PROCEDURE calcular_total_pagos_por_cliente(
+        IN p_codigo_cliente INT
+    )
+    BEGIN
+        SELECT SUM(total_pago) AS total_pagos FROM pago
+        WHERE codigo_cliente = p_codigo_cliente;
+    END $$
+    
+    DELIMITER ;
+    
+    CALL calcular_total_pagos_por_cliente(18);
+    ```
 
 
 Todos los archivos SQL incluido en este repositorio, fue creado por [Maritza Velasco Esteban](https://github.com/mvelascoe). Proporciona datos de ejemplo para la base de datos del proyecto.
