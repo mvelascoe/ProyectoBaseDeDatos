@@ -2,12 +2,13 @@
 
 ## Contenido
 
-- [**Archivo DDL**][Ver](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DDL.sql):  Este archivo SQL establece la estructura de la base de datos, junto con las relaciones entre las diferentes entidades.
-- [**Archivo DML**][Ver](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DML.sql):  Este archivo SQL muestra la realización de las inserciones de datos en tablas de la base de datos.
+- [**Archivo DDL**][ Ver Archivo ](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DDL.sql):  Este archivo SQL establece la estructura de la base de datos, junto con las relaciones entre las diferentes entidades.
+- [**Archivo DML**][ Ver Archivo ](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DML.sql):  Este archivo SQL muestra la realización de las inserciones de datos en tablas de la base de datos.
 - 
 ## Diagrama Entidad - Relación
 
 ![Diagrama Entidad-Relación](https://github.com/mvelascoe/ProyectoBaseDeDatos/blob/main/DER.png)
+
 
 
 ## Consultas sobre una tabla
@@ -378,9 +379,10 @@
               AND c.codigo_rep_ventas IN (11, 30);
     Empty set (0.00 sec)
     ```
+    
+    
 
-
-    ## Consultas multitabla (Composición interna)
+## Consultas multitabla (Composición interna)
 
 Resuelva todas las consultas utilizando la sintaxis de SQL1 y SQL2. Las consultas con
 sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
@@ -869,17 +871,18 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     | Jardineria Sara                | Ornamentales |
     +--------------------------------+--------------+
     ```
-
-
-     ## Consultas multitabla (Composición externa)
+    
+    
+    
+    ## Consultas multitabla (Composición externa)
     
     Resuelva todas las consultas utilizando las cláusulas LEFT JOIN, RIGHT JOIN, NATURAL
     LEFT JOIN y NATURAL RIGHT JOIN.
     
     
     
-1. Devuelve un listado que muestre solamente los clientes que no han
-      realizado ningún pago.
+    1. Devuelve un listado que muestre solamente los clientes que no han
+         realizado ningún pago.
 
    ```sql
    SELECT c.codigo_cliente, c.nombre_cliente
@@ -911,10 +914,8 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    +----------------+-----------------------------+
    ```
 
-   
-
 2. Devuelve un listado que muestre solamente los clientes que no han
-      realizado ningún pedido.
+     realizado ningún pedido.
 
    ```sql
    SELECT c.codigo_cliente, c.nombre_cliente
@@ -928,7 +929,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 3. Devuelve un listado que muestre los clientes que no han realizado ningún
-      pago y los que no han realizado ningún pedido.
+     pago y los que no han realizado ningún pedido.
 
    ```sql
    SELECT c.codigo_cliente, c.nombre_cliente
@@ -943,7 +944,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 4. Devuelve un listado que muestre solamente los empleados que no tienen
-      una oficina asociada.
+     una oficina asociada.
 
    ```sql
    SELECT e.codigo_empleado, e.nombre_empleado
@@ -957,7 +958,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 5. Devuelve un listado que muestre solamente los empleados que no tienen un
-      cliente asociado.
+     cliente asociado.
 
    ```sql
    SELECT e.nombre_empleado AS Nombre
@@ -986,7 +987,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 6. Devuelve un listado que muestre solamente los empleados que no tienen un
-      cliente asociado junto con los datos de la oficina donde trabajan.
+     cliente asociado junto con los datos de la oficina donde trabajan.
 
    ```sql
    SELECT e.codigo_empleado, e.nombre_empleado, o.codigo_oficina, o.codigo_ciudad, o.codigo_postal
@@ -1017,7 +1018,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 7. Devuelve un listado que muestre los empleados que no tienen una oficina
-      asociada y los que no tienen un cliente asociado.
+     asociada y los que no tienen un cliente asociado.
 
    ```sql
    SELECT e.codigo_empleado, e.nombre_empleado
@@ -1032,7 +1033,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 8. Devuelve un listado de los productos que nunca han aparecido en un
-      pedido.
+     pedido.
 
    ```sql
    SELECT p.codigo_producto, p.nombre
@@ -1053,8 +1054,8 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 9. Devuelve un listado de los productos que nunca han aparecido en un
-      pedido. El resultado debe mostrar el nombre, la descripción y la imagen del
-      producto.
+     pedido. El resultado debe mostrar el nombre, la descripción y la imagen del
+     producto.
 
    ```sql
    SELECT p.nombre, p.descripcion, gp.imagen
@@ -1079,148 +1080,149 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     hayan sido los representantes de ventas de algún cliente que haya realizado
     la compra de algún producto de la gama Frutales.
 
-    ```sql
-    SELECT DISTINCT o.codigo_oficina, o.codigo_ciudad, o.codigo_postal
-    FROM oficina o
-    LEFT JOIN empleado e ON o.codigo_oficina = e.codigo_oficina
-    LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_rep_ventas
-    LEFT JOIN pedido p ON c.codigo_cliente = p.codigo_cliente
-    LEFT JOIN detalle_pedido dp ON p.codigo_pedido = dp.codigo_pedido
-    LEFT JOIN producto pr ON dp.codigo_producto = pr.codigo_producto
-    LEFT JOIN gama_producto gp ON pr.codigo_gama = gp.codigo_gama
-    WHERE gp.gama = 'Frutales' AND e.codigo_empleado IS NULL;
-    
-    Empty set (0.01 sec)
-    ```
-    
-    
-    
+```sql
+SELECT DISTINCT o.codigo_oficina, o.codigo_ciudad, o.codigo_postal
+FROM oficina o
+LEFT JOIN empleado e ON o.codigo_oficina = e.codigo_oficina
+LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_rep_ventas
+LEFT JOIN pedido p ON c.codigo_cliente = p.codigo_cliente
+LEFT JOIN detalle_pedido dp ON p.codigo_pedido = dp.codigo_pedido
+LEFT JOIN producto pr ON dp.codigo_producto = pr.codigo_producto
+LEFT JOIN gama_producto gp ON pr.codigo_gama = gp.codigo_gama
+WHERE gp.gama = 'Frutales' AND e.codigo_empleado IS NULL;
+
+Empty set (0.01 sec)
+```
+
+
+
 11. Devuelve un listado con los clientes que han realizado algún pedido pero no
     han realizado ningún pago.
 
-    ```sql
-    SELECT c.codigo_cliente, c.nombre_cliente
-    FROM cliente c
-    LEFT JOIN pedido p ON c.codigo_cliente = p.codigo_cliente
-    LEFT JOIN pago pa ON c.codigo_cliente = pa.codigo_cliente
-    WHERE p.codigo_pedido IS NOT NULL AND pa.codigo_pago IS NULL;
-    
-    +----------------+-----------------------------+
-    | codigo_cliente | nombre_cliente              |
-    +----------------+-----------------------------+
-    |              6 | Lasas S.A.                  |
-    |              8 | Club Golf Puerta del hierro |
-    |             10 | DaraDistribuciones          |
-    |             11 | Madrileña de riegos         |
-    |             12 | Lasas S.A.                  |
-    |             17 | Flowers, S.A                |
-    |             18 | Naturajardin                |
-    |             20 | Americh Golf Management SL  |
-    |             21 | Aloha                       |
-    |             22 | El Prat                     |
-    |             24 | Vivero Humanes              |
-    |             25 | Fuenla City                 |
-    |             29 | Top Campo                   |
-    |             31 | Campohermoso                |
-    |             32 | france telecom              |
-    |             33 | Musée du Louvre             |
-    |             36 | Flores S.L.                 |
-    |             37 | The Magic Garden            |
-    +----------------+-----------------------------+
-    ```
-    
-    
-    
+```sql
+SELECT c.codigo_cliente, c.nombre_cliente
+FROM cliente c
+LEFT JOIN pedido p ON c.codigo_cliente = p.codigo_cliente
+LEFT JOIN pago pa ON c.codigo_cliente = pa.codigo_cliente
+WHERE p.codigo_pedido IS NOT NULL AND pa.codigo_pago IS NULL;
+
++----------------+-----------------------------+
+| codigo_cliente | nombre_cliente              |
++----------------+-----------------------------+
+|              6 | Lasas S.A.                  |
+|              8 | Club Golf Puerta del hierro |
+|             10 | DaraDistribuciones          |
+|             11 | Madrileña de riegos         |
+|             12 | Lasas S.A.                  |
+|             17 | Flowers, S.A                |
+|             18 | Naturajardin                |
+|             20 | Americh Golf Management SL  |
+|             21 | Aloha                       |
+|             22 | El Prat                     |
+|             24 | Vivero Humanes              |
+|             25 | Fuenla City                 |
+|             29 | Top Campo                   |
+|             31 | Campohermoso                |
+|             32 | france telecom              |
+|             33 | Musée du Louvre             |
+|             36 | Flores S.L.                 |
+|             37 | The Magic Garden            |
++----------------+-----------------------------+
+```
+
+
+
 12. Devuelve un listado con los datos de los empleados que no tienen clientes
     asociados y el nombre de su jefe asociado.
 
-    ```sql
-    SELECT CONCAT(e.nombre_empleado,' ', e.apellido1_empleado,' ', ifnull(e.apellido2_empleado,'')) AS nombre_empleado, e.email_empleado, e.codigo_jefe, CONCAT(j.nombre_empleado,' ', j.apellido1_empleado,' ', ifnull(j.apellido2_empleado,'')) AS nombre_jefe
-    FROM empleado e
-    LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_rep_ventas
-    LEFT JOIN empleado j ON e.codigo_jefe = j.codigo_empleado
-    WHERE c.codigo_rep_ventas IS NULL;
-    
-    +------------------------+---------------------------+-------------+------------------------+
-    | nombre_empleado        | email_empleado            | codigo_jefe | nombre_jefe            |
-    +------------------------+---------------------------+-------------+------------------------+
-    | Marcos Magaña Perez    | marcos@jardineria.es      |        NULL | NULL                   |
-    | Ruben López Martinez   | rlopez@jardineria.es      |           1 | Marcos Magaña Perez    |
-    | Alberto Soria Carrasco | asoria@jardineria.es      |           2 | Ruben López Martinez   |
-    | Maria Solís Jerez      | msolis@jardineria.es      |           2 | Ruben López Martinez   |
-    | Carlos Soria Jimenez   | csoria@jardineria.es      |           3 | Alberto Soria Carrasco |
-    | Emmanuel Magaña Perez  | manu@jardineria.es        |           3 | Alberto Soria Carrasco |
-    | Francois Fignon        | ffignon@gardening.com     |           3 | Alberto Soria Carrasco |
-    | Michael Bolton         | mbolton@gardening.com     |           3 | Alberto Soria Carrasco |
-    | Hilary Washington      | hwashington@gardening.com |           3 | Alberto Soria Carrasco |
-    | Nei Nishikori          | nnishikori@gardening.com  |           3 | Alberto Soria Carrasco |
-    | Amy Johnson            | ajohnson@gardening.com    |           3 | Alberto Soria Carrasco |
-    | Kevin Fallmer          | kfalmer@gardening.com     |           3 | Alberto Soria Carrasco |
-    +------------------------+---------------------------+-------------+------------------------+
-    
-    
-    ```
+```sql
+SELECT CONCAT(e.nombre_empleado,' ', e.apellido1_empleado,' ', ifnull(e.apellido2_empleado,'')) AS nombre_empleado, e.email_empleado, e.codigo_jefe, CONCAT(j.nombre_empleado,' ', j.apellido1_empleado,' ', ifnull(j.apellido2_empleado,'')) AS nombre_jefe
+FROM empleado e
+LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_rep_ventas
+LEFT JOIN empleado j ON e.codigo_jefe = j.codigo_empleado
+WHERE c.codigo_rep_ventas IS NULL;
+
++------------------------+---------------------------+-------------+------------------------+
+| nombre_empleado        | email_empleado            | codigo_jefe | nombre_jefe            |
++------------------------+---------------------------+-------------+------------------------+
+| Marcos Magaña Perez    | marcos@jardineria.es      |        NULL | NULL                   |
+| Ruben López Martinez   | rlopez@jardineria.es      |           1 | Marcos Magaña Perez    |
+| Alberto Soria Carrasco | asoria@jardineria.es      |           2 | Ruben López Martinez   |
+| Maria Solís Jerez      | msolis@jardineria.es      |           2 | Ruben López Martinez   |
+| Carlos Soria Jimenez   | csoria@jardineria.es      |           3 | Alberto Soria Carrasco |
+| Emmanuel Magaña Perez  | manu@jardineria.es        |           3 | Alberto Soria Carrasco |
+| Francois Fignon        | ffignon@gardening.com     |           3 | Alberto Soria Carrasco |
+| Michael Bolton         | mbolton@gardening.com     |           3 | Alberto Soria Carrasco |
+| Hilary Washington      | hwashington@gardening.com |           3 | Alberto Soria Carrasco |
+| Nei Nishikori          | nnishikori@gardening.com  |           3 | Alberto Soria Carrasco |
+| Amy Johnson            | ajohnson@gardening.com    |           3 | Alberto Soria Carrasco |
+| Kevin Fallmer          | kfalmer@gardening.com     |           3 | Alberto Soria Carrasco |
++------------------------+---------------------------+-------------+------------------------+
 
 
-     ## Consultas resumen
-    
+```
+
+
+
+## Consultas resumen
+
 1. ¿Cuántos empleados hay en la compañía?
 
-    ```sql
-    SELECT COUNT(codigo_empleado) AS total_empleados
-    FROM empleado;
-    
-    +-----------------+
-    | total_empleados |
-    +-----------------+
-    |              31 |
-    +-----------------+
-    ```
+```sql
+SELECT COUNT(codigo_empleado) AS total_empleados
+FROM empleado;
 
-    
++-----------------+
+| total_empleados |
++-----------------+
+|              31 |
++-----------------+
+```
+
+
 
 2. ¿Cuántos clientes tiene cada país?
 
-    ```sql
-    SELECT p.nombre_pais, COUNT(c.codigo_cliente) AS total_clientes
-    FROM cliente c
-    JOIN ciudad ci ON c.codigo_ciudad = ci.codigo_ciudad
-    JOIN region r ON ci.codigo_region = r.codigo_region
-    JOIN pais p ON r.codigo_pais = p.codigo_pais
-    GROUP BY p.nombre_pais;
-    
-    +-------------+----------------+
-    | nombre_pais | total_clientes |
-    +-------------+----------------+
-    | Australia   |              1 |
-    | España      |             12 |
-    | Francia     |              5 |
-    | Japón       |              4 |
-    | Inglaterra  |              4 |
-    | EEUU        |             10 |
-    +-------------+----------------+
-    ```
+```sql
+SELECT p.nombre_pais, COUNT(c.codigo_cliente) AS total_clientes
+FROM cliente c
+JOIN ciudad ci ON c.codigo_ciudad = ci.codigo_ciudad
+JOIN region r ON ci.codigo_region = r.codigo_region
+JOIN pais p ON r.codigo_pais = p.codigo_pais
+GROUP BY p.nombre_pais;
 
-    
++-------------+----------------+
+| nombre_pais | total_clientes |
++-------------+----------------+
+| Australia   |              1 |
+| España      |             12 |
+| Francia     |              5 |
+| Japón       |              4 |
+| Inglaterra  |              4 |
+| EEUU        |             10 |
++-------------+----------------+
+```
+
+
 
 3. ¿Cuál fue el pago medio en 2009?
 
-    ```sql
-    SELECT AVG(total_pago) AS pago_medio_2009
-    FROM pago
-    WHERE YEAR(fecha_pago) = 2009;
-    
-    +-----------------+
-    | pago_medio_2009 |
-    +-----------------+
-    |     4504.076923 |
-    +-----------------+
-    ```
+```sql
+SELECT AVG(total_pago) AS pago_medio_2009
+FROM pago
+WHERE YEAR(fecha_pago) = 2009;
 
-    
++-----------------+
+| pago_medio_2009 |
++-----------------+
+|     4504.076923 |
++-----------------+
+```
+
+
 
 4. ¿Cuántos pedidos hay en cada estado? Ordena el resultado de forma
-      descendente por el número de pedidos.
+     descendente por el número de pedidos.
 
    ```sql
    SELECT estado.nombre AS nombre_estado, COUNT(*) AS cantidad_pedidos
@@ -1241,7 +1243,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 5. Calcula el precio de venta del producto más caro y más barato en una
-      misma consulta.
+     misma consulta.
 
    ```sql
    SELECT MAX(precio_venta) AS precio_mas_caro, MIN(precio_venta) AS precio_mas_barato
@@ -1258,37 +1260,37 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
 
 6. Calcula el número de clientes que tiene la empresa.
 
-    ```sql
-    SELECT COUNT(codigo_cliente) AS total_clientes
-    FROM cliente;
-    
-    +----------------+
-    | total_clientes |
-    +----------------+
-    |             36 |
-    +----------------+
-    ```
+```sql
+SELECT COUNT(codigo_cliente) AS total_clientes
+FROM cliente;
 
-    
++----------------+
+| total_clientes |
++----------------+
+|             36 |
++----------------+
+```
+
+
 
 7. ¿Cuántos clientes existen con domicilio en la ciudad de Madrid?
 
-    ```sql
-    SELECT COUNT(codigo_cliente) AS total_clientes_madrid
-    FROM cliente
-    WHERE codigo_ciudad = 4;
-    
-    +-----------------------+
-    | total_clientes_madrid |
-    +-----------------------+
-    |                     2 |
-    +-----------------------+
-    ```
+```sql
+SELECT COUNT(codigo_cliente) AS total_clientes_madrid
+FROM cliente
+WHERE codigo_ciudad = 4;
 
-    
++-----------------------+
+| total_clientes_madrid |
++-----------------------+
+|                     2 |
++-----------------------+
+```
+
+
 
 8. ¿Calcula cuántos clientes tiene cada una de las ciudades que empiezan
-      por M?
+     por M?
 
    ```sql
    SELECT ci.nombre_ciudad, COUNT(cl.codigo_cliente) AS total_clientes
@@ -1307,7 +1309,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 9. Devuelve el nombre de los representantes de ventas y el número de clientes
-      al que atiende cada uno.
+     al que atiende cada uno.
 
    ```sql
    SELECT CONCAT(e.nombre_empleado, ' ', e.apellido1_empleado) AS representante_ventas,
@@ -1358,325 +1360,1252 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
 10. Calcula el número de clientes que no tiene asignado representante de
     ventas.
 
-    ```sql
-    SELECT COUNT(codigo_cliente) AS clientes_sin_representante
-    FROM cliente
-    WHERE codigo_rep_ventas IS NULL OR codigo_rep_ventas = '';
-    
-    +-----------------------------+
-    | num_clientes_sin_rep_ventas |
-    +-----------------------------+
-    |                           0 |
-    +-----------------------------+
-    ```
-    
-    
-    
+```sql
+SELECT COUNT(codigo_cliente) AS clientes_sin_representante
+FROM cliente
+WHERE codigo_rep_ventas IS NULL OR codigo_rep_ventas = '';
+
++-----------------------------+
+| num_clientes_sin_rep_ventas |
++-----------------------------+
+|                           0 |
++-----------------------------+
+```
+
+
+
 11. Calcula la fecha del primer y último pago realizado por cada uno de los
     clientes. El listado deberá mostrar el nombre y los apellidos de cada cliente.
 
-    ```sql
-    SELECT cliente.nombre_cliente, MIN(pago.fecha_pago) AS primer_pago, MAX(pago.fecha_pago) AS ultimo_pago
-    FROM cliente
-    LEFT JOIN pago ON cliente.codigo_cliente = pago.codigo_cliente
-    GROUP BY cliente.nombre_cliente;
-    +--------------------------------+-------------+-------------+
-    | nombre_cliente                 | primer_pago | ultimo_pago |
-    +--------------------------------+-------------+-------------+
-    | GoldFish Garden                | 2008-11-10  | 2008-12-10  |
-    | Gardening Associates           | 2009-01-16  | 2009-02-19  |
-    | Gerudo Valley                  | 2007-01-08  | 2007-01-08  |
-    | Tendo Garden                   | 2006-01-18  | 2006-01-18  |
-    | Lasas S.A.                     | NULL        | NULL        |
-    | Beragua                        | 2009-01-13  | 2009-01-13  |
-    | Club Golf Puerta del hierro    | NULL        | NULL        |
-    | Naturagua                      | 2009-01-06  | 2009-01-06  |
-    | DaraDistribuciones             | NULL        | NULL        |
-    | Madrileña de riegos            | NULL        | NULL        |
-    | Camunas Jardines S.L.          | 2008-08-04  | 2008-08-04  |
-    | Dardena S.A.                   | 2008-07-15  | 2008-07-15  |
-    | Jardin de Flores               | 2009-01-15  | 2009-02-15  |
-    | Flores Marivi                  | 2009-02-16  | 2009-02-16  |
-    | Flowers, S.A                   | NULL        | NULL        |
-    | Naturajardin                   | NULL        | NULL        |
-    | Golf S.A.                      | 2009-03-06  | 2009-03-06  |
-    | Americh Golf Management SL     | NULL        | NULL        |
-    | Aloha                          | NULL        | NULL        |
-    | El Prat                        | NULL        | NULL        |
-    | Sotogrande                     | 2009-03-26  | 2009-03-26  |
-    | Vivero Humanes                 | NULL        | NULL        |
-    | Fuenla City                    | NULL        | NULL        |
-    | Jardines y Mansiones Cactus SL | 2008-03-18  | 2008-03-18  |
-    | Jardinerías Matías SL          | 2009-02-08  | 2009-02-08  |
-    | Agrojardin                     | 2009-01-13  | 2009-01-13  |
-    | Top Campo                      | NULL        | NULL        |
-    | Jardineria Sara                | 2009-01-16  | 2009-01-16  |
-    | Campohermoso                   | NULL        | NULL        |
-    | france telecom                 | NULL        | NULL        |
-    | Musée du Louvre                | NULL        | NULL        |
-    | Tutifruti S.A                  | 2007-10-06  | 2007-10-06  |
-    | Flores S.L.                    | NULL        | NULL        |
-    | The Magic Garden               | NULL        | NULL        |
-    | El Jardin Viviente S.L         | 2006-05-26  | 2006-05-26  |
-    +--------------------------------+-------------+-------------+
-    ```
-    
-    
-    
+```sql
+SELECT cliente.nombre_cliente, MIN(pago.fecha_pago) AS primer_pago, MAX(pago.fecha_pago) AS ultimo_pago
+FROM cliente
+LEFT JOIN pago ON cliente.codigo_cliente = pago.codigo_cliente
+GROUP BY cliente.nombre_cliente;
++--------------------------------+-------------+-------------+
+| nombre_cliente                 | primer_pago | ultimo_pago |
++--------------------------------+-------------+-------------+
+| GoldFish Garden                | 2008-11-10  | 2008-12-10  |
+| Gardening Associates           | 2009-01-16  | 2009-02-19  |
+| Gerudo Valley                  | 2007-01-08  | 2007-01-08  |
+| Tendo Garden                   | 2006-01-18  | 2006-01-18  |
+| Lasas S.A.                     | NULL        | NULL        |
+| Beragua                        | 2009-01-13  | 2009-01-13  |
+| Club Golf Puerta del hierro    | NULL        | NULL        |
+| Naturagua                      | 2009-01-06  | 2009-01-06  |
+| DaraDistribuciones             | NULL        | NULL        |
+| Madrileña de riegos            | NULL        | NULL        |
+| Camunas Jardines S.L.          | 2008-08-04  | 2008-08-04  |
+| Dardena S.A.                   | 2008-07-15  | 2008-07-15  |
+| Jardin de Flores               | 2009-01-15  | 2009-02-15  |
+| Flores Marivi                  | 2009-02-16  | 2009-02-16  |
+| Flowers, S.A                   | NULL        | NULL        |
+| Naturajardin                   | NULL        | NULL        |
+| Golf S.A.                      | 2009-03-06  | 2009-03-06  |
+| Americh Golf Management SL     | NULL        | NULL        |
+| Aloha                          | NULL        | NULL        |
+| El Prat                        | NULL        | NULL        |
+| Sotogrande                     | 2009-03-26  | 2009-03-26  |
+| Vivero Humanes                 | NULL        | NULL        |
+| Fuenla City                    | NULL        | NULL        |
+| Jardines y Mansiones Cactus SL | 2008-03-18  | 2008-03-18  |
+| Jardinerías Matías SL          | 2009-02-08  | 2009-02-08  |
+| Agrojardin                     | 2009-01-13  | 2009-01-13  |
+| Top Campo                      | NULL        | NULL        |
+| Jardineria Sara                | 2009-01-16  | 2009-01-16  |
+| Campohermoso                   | NULL        | NULL        |
+| france telecom                 | NULL        | NULL        |
+| Musée du Louvre                | NULL        | NULL        |
+| Tutifruti S.A                  | 2007-10-06  | 2007-10-06  |
+| Flores S.L.                    | NULL        | NULL        |
+| The Magic Garden               | NULL        | NULL        |
+| El Jardin Viviente S.L         | 2006-05-26  | 2006-05-26  |
++--------------------------------+-------------+-------------+
+```
+
+
+
 12. Calcula el número de productos diferentes que hay en cada uno de los
     pedidos.
 
-    ```sql
-    SELECT codigo_pedido, COUNT(DISTINCT codigo_producto) AS num_productos_diferentes
-    FROM detalle_pedido
-    GROUP BY codigo_pedido;
-    
-    +---------------+--------------------------+
-    | codigo_pedido | num_productos_diferentes |
-    +---------------+--------------------------+
-    | PED001        |                        1 |
-    | PED003        |                        1 |
-    | PED004        |                        1 |
-    | PED005        |                        1 |
-    | PED006        |                        1 |
-    | PED007        |                        1 |
-    | PED008        |                        1 |
-    | PED009        |                        1 |
-    | PED010        |                        1 |
-    | PED011        |                        1 |
-    | PED012        |                        1 |
-    | PED013        |                        1 |
-    | PED014        |                        1 |
-    | PED015        |                        1 |
-    | PED016        |                        1 |
-    | PED017        |                        1 |
-    | PED018        |                        1 |
-    | PED019        |                        1 |
-    | PED020        |                        1 |
-    | PED021        |                        1 |
-    | PED025        |                        1 |
-    | PED026        |                        1 |
-    | PED027        |                        1 |
-    | PED028        |                        1 |
-    | PED029        |                        1 |
-    | PED030        |                        1 |
-    | PED031        |                        1 |
-    | PED032        |                        1 |
-    | PED033        |                        1 |
-    +---------------+--------------------------+
-    ```
-    
-    
-    
+```sql
+SELECT codigo_pedido, COUNT(DISTINCT codigo_producto) AS num_productos_diferentes
+FROM detalle_pedido
+GROUP BY codigo_pedido;
+
++---------------+--------------------------+
+| codigo_pedido | num_productos_diferentes |
++---------------+--------------------------+
+| PED001        |                        1 |
+| PED003        |                        1 |
+| PED004        |                        1 |
+| PED005        |                        1 |
+| PED006        |                        1 |
+| PED007        |                        1 |
+| PED008        |                        1 |
+| PED009        |                        1 |
+| PED010        |                        1 |
+| PED011        |                        1 |
+| PED012        |                        1 |
+| PED013        |                        1 |
+| PED014        |                        1 |
+| PED015        |                        1 |
+| PED016        |                        1 |
+| PED017        |                        1 |
+| PED018        |                        1 |
+| PED019        |                        1 |
+| PED020        |                        1 |
+| PED021        |                        1 |
+| PED025        |                        1 |
+| PED026        |                        1 |
+| PED027        |                        1 |
+| PED028        |                        1 |
+| PED029        |                        1 |
+| PED030        |                        1 |
+| PED031        |                        1 |
+| PED032        |                        1 |
+| PED033        |                        1 |
++---------------+--------------------------+
+```
+
+
+
 13. Calcula la suma de la cantidad total de todos los productos que aparecen en
     cada uno de los pedidos.
 
-    ```sql
-    SELECT codigo_pedido, SUM(cantidad) AS cantidad_total_productos
-    FROM detalle_pedido
-    GROUP BY codigo_pedido;
-    
-    +---------------+--------------------------+
-    | codigo_pedido | cantidad_total_productos |
-    +---------------+--------------------------+
-    | PED001        |                        5 |
-    | PED003        |                        2 |
-    | PED004        |                        4 |
-    | PED005        |                        6 |
-    | PED006        |                        1 |
-    | PED007        |                        2 |
-    | PED008        |                        3 |
-    | PED009        |                        5 |
-    | PED010        |                        2 |
-    | PED011        |                        3 |
-    | PED012        |                        4 |
-    | PED013        |                        2 |
-    | PED014        |                        1 |
-    | PED015        |                        3 |
-    | PED016        |                        4 |
-    | PED017        |                        5 |
-    | PED018        |                        3 |
-    | PED019        |                        2 |
-    | PED020        |                        6 |
-    | PED021        |                        1 |
-    | PED025        |                        3 |
-    | PED026        |                        5 |
-    | PED027        |                        2 |
-    | PED028        |                        3 |
-    | PED029        |                        4 |
-    | PED030        |                        3 |
-    | PED031        |                        4 |
-    | PED032        |                        2 |
-    | PED033        |                        3 |
-    +---------------+--------------------------+
-    ```
-    
-    
-    
+```sql
+SELECT codigo_pedido, SUM(cantidad) AS cantidad_total_productos
+FROM detalle_pedido
+GROUP BY codigo_pedido;
+
++---------------+--------------------------+
+| codigo_pedido | cantidad_total_productos |
++---------------+--------------------------+
+| PED001        |                        5 |
+| PED003        |                        2 |
+| PED004        |                        4 |
+| PED005        |                        6 |
+| PED006        |                        1 |
+| PED007        |                        2 |
+| PED008        |                        3 |
+| PED009        |                        5 |
+| PED010        |                        2 |
+| PED011        |                        3 |
+| PED012        |                        4 |
+| PED013        |                        2 |
+| PED014        |                        1 |
+| PED015        |                        3 |
+| PED016        |                        4 |
+| PED017        |                        5 |
+| PED018        |                        3 |
+| PED019        |                        2 |
+| PED020        |                        6 |
+| PED021        |                        1 |
+| PED025        |                        3 |
+| PED026        |                        5 |
+| PED027        |                        2 |
+| PED028        |                        3 |
+| PED029        |                        4 |
+| PED030        |                        3 |
+| PED031        |                        4 |
+| PED032        |                        2 |
+| PED033        |                        3 |
++---------------+--------------------------+
+```
+
+
+
 14. Devuelve un listado de los 20 productos más vendidos y el número total de
     unidades que se han vendido de cada uno. El listado deberá estar ordenado
     por el número total de unidades vendidas.
 
-    ```sql
-    SELECT p.nombre AS nombre_producto, SUM(dp.cantidad) AS total_unidades_vendidas
-    FROM producto AS p
-    JOIN detalle_pedido AS dp ON p.codigo_producto = dp.codigo_producto
-    GROUP BY p.codigo_producto
-    ORDER BY total_unidades_vendidas DESC
-    LIMIT 20;
-    
-    +----------------------------+-------------------------+
-    | nombre_producto            | total_unidades_vendidas |
-    +----------------------------+-------------------------+
-    | Kit de Plantación          |                       7 |
-    | Semillas de Tomate         |                       7 |
-    | Cesta de Plantas Variadas  |                       6 |
-    | Azalea                     |                       6 |
-    | Ramo de Rosas Rojas        |                       5 |
-    | Amapolas                   |                       5 |
-    | Fertilizante Orgánico      |                       5 |
-    | Limón                      |                       5 |
-    | Orquídea Phalaenopsis      |                       4 |
-    | Kit de Jardinería Infantil |                       4 |
-    | Regadera                   |                       4 |
-    | Manzano                    |                       4 |
-    | Set de Macetas de Cerámica |                       3 |
-    | Terrario de Suculentas     |                       3 |
-    | Helechos                   |                       3 |
-    | Tijeras de podar           |                       3 |
-    | Albahaca                   |                       3 |
-    | Naranjo                    |                       3 |
-    | Lavanda                    |                       2 |
-    | Menta                      |                       2 |
-    +----------------------------+-------------------------+
-    ```
-    
-    
-    
+```sql
+SELECT p.nombre AS nombre_producto, SUM(dp.cantidad) AS total_unidades_vendidas
+FROM producto AS p
+JOIN detalle_pedido AS dp ON p.codigo_producto = dp.codigo_producto
+GROUP BY p.codigo_producto
+ORDER BY total_unidades_vendidas DESC
+LIMIT 20;
+
++----------------------------+-------------------------+
+| nombre_producto            | total_unidades_vendidas |
++----------------------------+-------------------------+
+| Kit de Plantación          |                       7 |
+| Semillas de Tomate         |                       7 |
+| Cesta de Plantas Variadas  |                       6 |
+| Azalea                     |                       6 |
+| Ramo de Rosas Rojas        |                       5 |
+| Amapolas                   |                       5 |
+| Fertilizante Orgánico      |                       5 |
+| Limón                      |                       5 |
+| Orquídea Phalaenopsis      |                       4 |
+| Kit de Jardinería Infantil |                       4 |
+| Regadera                   |                       4 |
+| Manzano                    |                       4 |
+| Set de Macetas de Cerámica |                       3 |
+| Terrario de Suculentas     |                       3 |
+| Helechos                   |                       3 |
+| Tijeras de podar           |                       3 |
+| Albahaca                   |                       3 |
+| Naranjo                    |                       3 |
+| Lavanda                    |                       2 |
+| Menta                      |                       2 |
++----------------------------+-------------------------+
+```
+
+
+
 15. La facturación que ha tenido la empresa en toda la historia, indicando la
     base imponible, el IVA y el total facturado. La base imponible se calcula
     sumando el coste del producto por el número de unidades vendidas de la
     tabla detalle_pedido. El IVA es el 21 % de la base imponible, y el total la
     suma de los dos campos anteriores.
 
-    ```sql
-    SELECT 
-        SUM(dp.precio_unidad * dp.cantidad) AS base_imponible,
-        SUM(dp.precio_unidad * dp.cantidad * 0.21) AS iva,
-        SUM(dp.precio_unidad * dp.cantidad * 1.21) AS total_facturado
-    FROM detalle_pedido AS dp;
-    
-    +----------------+----------+-----------------+
-    | base_imponible | iva      | total_facturado |
-    +----------------+----------+-----------------+
-    |        1737.59 | 364.8939 |       2102.4839 |
-    +----------------+----------+-----------------+
-    ```
-    
-    
-    
+```sql
+SELECT 
+    SUM(dp.precio_unidad * dp.cantidad) AS base_imponible,
+    SUM(dp.precio_unidad * dp.cantidad * 0.21) AS iva,
+    SUM(dp.precio_unidad * dp.cantidad * 1.21) AS total_facturado
+FROM detalle_pedido AS dp;
+
++----------------+----------+-----------------+
+| base_imponible | iva      | total_facturado |
++----------------+----------+-----------------+
+|        1737.59 | 364.8939 |       2102.4839 |
++----------------+----------+-----------------+
+```
+
+
+
 16. La misma información que en la pregunta anterior, pero agrupada por
     código de producto.
 
-    ```sql
-    SELECT 
-        dp.codigo_producto,
-        SUM(dp.precio_unidad * dp.cantidad) AS base_imponible,
-        SUM(dp.precio_unidad * dp.cantidad * 0.21) AS iva,
-        SUM(dp.precio_unidad * dp.cantidad * 1.21) AS total_facturado
-    FROM detalle_pedido AS dp
-    GROUP BY dp.codigo_producto;
-    
-    +-----------------+----------------+---------+-----------------+
-    | codigo_producto | base_imponible | iva     | total_facturado |
-    +-----------------+----------------+---------+-----------------+
-    | PRD001          |          62.50 | 13.1250 |         75.6250 |
-    | PRD003          |          17.50 |  3.6750 |         21.1750 |
-    | PRD004          |          43.96 |  9.2316 |         53.1916 |
-    | PRD005          |          47.94 | 10.0674 |         58.0074 |
-    | PRD006          |          18.50 |  3.8850 |         22.3850 |
-    | PRD007          |          28.50 |  5.9850 |         34.4850 |
-    | PRD008          |          62.97 | 13.2237 |         76.1937 |
-    | PRD009          |          83.75 | 17.5875 |        101.3375 |
-    | PRD010          |          23.98 |  5.0358 |         29.0158 |
-    | PRD011          |          28.50 |  5.9850 |         34.4850 |
-    | PRD012          |          91.00 | 19.1100 |        110.1100 |
-    | PRD013          |          57.98 | 12.1758 |         70.1558 |
-    | PRD014          |          32.50 |  6.8250 |         39.3250 |
-    | PRD015          |          89.97 | 18.8937 |        108.8637 |
-    | PRD016          |          71.96 | 15.1116 |         87.0716 |
-    | PRD017          |          63.75 | 13.3875 |         77.1375 |
-    | PRD018          |          64.50 | 13.5450 |         78.0450 |
-    | PRD019          |          39.98 |  8.3958 |         48.3758 |
-    | PRD020          |          87.00 | 18.2700 |        105.2700 |
-    | PRD021          |          27.75 |  5.8275 |         33.5775 |
-    | PRD025          |         180.21 | 37.8441 |        218.0541 |
-    | PRD026          |         148.45 | 31.1745 |        179.6245 |
-    | PRD027          |         118.97 | 24.9837 |        143.9537 |
-    | PRD028          |          44.97 |  9.4437 |         54.4137 |
-    | PRD029          |         127.00 | 26.6700 |        153.6700 |
-    | PRD030          |          73.50 | 15.4350 |         88.9350 |
-    +-----------------+----------------+---------+-----------------+
-    ```
-    
-    
-    
+```sql
+SELECT 
+    dp.codigo_producto,
+    SUM(dp.precio_unidad * dp.cantidad) AS base_imponible,
+    SUM(dp.precio_unidad * dp.cantidad * 0.21) AS iva,
+    SUM(dp.precio_unidad * dp.cantidad * 1.21) AS total_facturado
+FROM detalle_pedido AS dp
+GROUP BY dp.codigo_producto;
+
++-----------------+----------------+---------+-----------------+
+| codigo_producto | base_imponible | iva     | total_facturado |
++-----------------+----------------+---------+-----------------+
+| PRD001          |          62.50 | 13.1250 |         75.6250 |
+| PRD003          |          17.50 |  3.6750 |         21.1750 |
+| PRD004          |          43.96 |  9.2316 |         53.1916 |
+| PRD005          |          47.94 | 10.0674 |         58.0074 |
+| PRD006          |          18.50 |  3.8850 |         22.3850 |
+| PRD007          |          28.50 |  5.9850 |         34.4850 |
+| PRD008          |          62.97 | 13.2237 |         76.1937 |
+| PRD009          |          83.75 | 17.5875 |        101.3375 |
+| PRD010          |          23.98 |  5.0358 |         29.0158 |
+| PRD011          |          28.50 |  5.9850 |         34.4850 |
+| PRD012          |          91.00 | 19.1100 |        110.1100 |
+| PRD013          |          57.98 | 12.1758 |         70.1558 |
+| PRD014          |          32.50 |  6.8250 |         39.3250 |
+| PRD015          |          89.97 | 18.8937 |        108.8637 |
+| PRD016          |          71.96 | 15.1116 |         87.0716 |
+| PRD017          |          63.75 | 13.3875 |         77.1375 |
+| PRD018          |          64.50 | 13.5450 |         78.0450 |
+| PRD019          |          39.98 |  8.3958 |         48.3758 |
+| PRD020          |          87.00 | 18.2700 |        105.2700 |
+| PRD021          |          27.75 |  5.8275 |         33.5775 |
+| PRD025          |         180.21 | 37.8441 |        218.0541 |
+| PRD026          |         148.45 | 31.1745 |        179.6245 |
+| PRD027          |         118.97 | 24.9837 |        143.9537 |
+| PRD028          |          44.97 |  9.4437 |         54.4137 |
+| PRD029          |         127.00 | 26.6700 |        153.6700 |
+| PRD030          |          73.50 | 15.4350 |         88.9350 |
++-----------------+----------------+---------+-----------------+
+```
+
+
+
 17. La misma información que en la pregunta anterior, pero agrupada por
     código de producto filtrada por los códigos que empiecen por OR.
 
-    ```sql
-    SELECT 
-        dp.codigo_producto,
-        SUM(dp.precio_unidad * dp.cantidad) AS base_imponible,
-        SUM(dp.precio_unidad * dp.cantidad) * 0.21 AS iva,
-        SUM(dp.precio_unidad * dp.cantidad) * 1.21 AS total_facturado
-    FROM detalle_pedido dp
-    JOIN producto p ON dp.codigo_producto = p.codigo_producto
-    WHERE p.codigo_producto LIKE 'OR%'
-    GROUP BY dp.codigo_producto;
-    
-    Empty set (0.02 sec)
-    ```
-    
-    
-    
+```sql
+SELECT 
+    dp.codigo_producto,
+    SUM(dp.precio_unidad * dp.cantidad) AS base_imponible,
+    SUM(dp.precio_unidad * dp.cantidad) * 0.21 AS iva,
+    SUM(dp.precio_unidad * dp.cantidad) * 1.21 AS total_facturado
+FROM detalle_pedido dp
+JOIN producto p ON dp.codigo_producto = p.codigo_producto
+WHERE p.codigo_producto LIKE 'OR%'
+GROUP BY dp.codigo_producto;
+
+Empty set (0.02 sec)
+```
+
+
+
 18. Lista las ventas totales de los productos que hayan facturado más de 3000
     euros. Se mostrará el nombre, unidades vendidas, total facturado y total
     facturado con impuestos (21% IVA).
 
-    ```sql
-    SELECT 
-        p.nombre AS nombre_producto,
-        SUM(dp.cantidad) AS unidades_vendidas,
-        SUM(dp.precio_unidad * dp.cantidad) AS total_facturado_sin_iva,
-        SUM(dp.precio_unidad * dp.cantidad * 1.21) AS total_facturado_con_iva
-    FROM detalle_pedido AS dp
-    JOIN producto AS p ON dp.codigo_producto = p.codigo_producto
-    GROUP BY dp.codigo_producto
-    HAVING total_facturado_con_iva > 3000;
-    
-    Empty set (0.01 sec)
-    ```
-    
-    
-    
+```sql
+SELECT 
+    p.nombre AS nombre_producto,
+    SUM(dp.cantidad) AS unidades_vendidas,
+    SUM(dp.precio_unidad * dp.cantidad) AS total_facturado_sin_iva,
+    SUM(dp.precio_unidad * dp.cantidad * 1.21) AS total_facturado_con_iva
+FROM detalle_pedido AS dp
+JOIN producto AS p ON dp.codigo_producto = p.codigo_producto
+GROUP BY dp.codigo_producto
+HAVING total_facturado_con_iva > 3000;
+
+Empty set (0.01 sec)
+```
+
+
+
 19. Muestre la suma total de todos los pagos que se realizaron para cada uno
     de los años que aparecen en la tabla pagos.
 
-    ```sql
-    SELECT YEAR(fecha_pago) AS año, SUM(total_pago) AS suma_total_pagos
-    FROM pago
-    GROUP BY YEAR(fecha_pago);
-    
-    +------+------------------+
-    | año  | suma_total_pagos |
-    +------+------------------+
-    | 2008 |         29252.00 |
-    | 2009 |         58553.00 |
-    | 2007 |         85170.00 |
-    | 2006 |         24965.00 |
-    +------+------------------+
+```sql
+SELECT YEAR(fecha_pago) AS año, SUM(total_pago) AS suma_total_pagos
+FROM pago
+GROUP BY YEAR(fecha_pago);
+
++------+------------------+
+| año  | suma_total_pagos |
++------+------------------+
+| 2008 |         29252.00 |
+| 2009 |         58553.00 |
+| 2007 |         85170.00 |
+| 2006 |         24965.00 |
++------+------------------+
+```
+
+## Subconsultas
+
+Con operadores básicos de comparación
+
+1. Devuelve el nombre del cliente con mayor límite de crédito.
+
+   ```sql
+   SELECT nombre_cliente 
+   FROM cliente 
+   WHERE limite_credito = 
+   	(SELECT MAX(limite_credito) FROM cliente
+   );
+   
+   +----------------+
+   | nombre_cliente |
+   +----------------+
+   | Tendo Garden   |
+   +----------------+
+   ```
+
+   
+
+2. Devuelve el nombre del producto que tenga el precio de venta más caro.
+
+   ```sql
+   SELECT nombre 
+   FROM producto 
+   WHERE precio_venta = (
+       SELECT MAX(precio_venta) FROM producto
+   );
+   
+   +-----------------------+
+   | nombre                |
+   +-----------------------+
+   | Orquídea Phalaenopsis |
+   +-----------------------+
+   ```
+
+   
+
+3. Devuelve el nombre del producto del que se han vendido más unidades.
+  (Tenga en cuenta que tendrá que calcular cuál es el número total de
+  unidades que se han vendido de cada producto a partir de los datos de la
+  tabla detalle_pedido)
+
+  ```sql
+  SELECT prod.nombre AS nombre_producto
+  FROM producto prod
+  JOIN detalle_pedido dp ON prod.codigo_producto = dp.codigo_producto
+  GROUP BY prod.nombre
+  ORDER BY SUM(dp.cantidad) DESC
+  LIMIT 1;
+  
+  +--------------------+
+  | nombre_producto    |
+  +--------------------+
+  | Semillas de Tomate |
+  +--------------------+
+  ```
+
+  
+
+4. Los clientes cuyo límite de crédito sea mayor que los pagos que haya
+  realizado. (Sin utilizar INNER JOIN).
+
+  ```sql
+  SELECT nombre_cliente
+  FROM cliente
+  WHERE limite_credito > (
+      SELECT IFNULL(SUM(total_pago), 0)
+      FROM pago
+      WHERE pago.codigo_cliente = cliente.codigo_cliente
+  );
+  
+  +--------------------------------+
+  | nombre_cliente                 |
+  +--------------------------------+
+  | Tendo Garden                   |
+  | Lasas S.A.                     |
+  | Beragua                        |
+  | Club Golf Puerta del hierro    |
+  | Naturagua                      |
+  | DaraDistribuciones             |
+  | Madrileña de riegos            |
+  | Lasas S.A.                     |
+  | Camunas Jardines S.L.          |
+  | Dardena S.A.                   |
+  | Jardin de Flores               |
+  | Flowers, S.A                   |
+  | Naturajardin                   |
+  | Golf S.A.                      |
+  | Americh Golf Management SL     |
+  | Aloha                          |
+  | El Prat                        |
+  | Sotogrande                     |
+  | Vivero Humanes                 |
+  | Fuenla City                    |
+  | Jardines y Mansiones Cactus SL |
+  | Jardinerías Matías SL          |
+  | Top Campo                      |
+  | Campohermoso                   |
+  | france telecom                 |
+  | Musée du Louvre                |
+  | Tutifruti S.A                  |
+  | Flores S.L.                    |
+  | The Magic Garden               |
+  | El Jardin Viviente S.L         |
+  +--------------------------------+
+  ```
+
+  
+
+5. Devuelve el producto que más unidades tiene en stock.
+
+   ```sql
+   SELECT nombre
+   FROM producto
+   WHERE cantidad_stock = (
+       SELECT MAX(cantidad_stock)
+       FROM producto
+   );
+   
+   +-------------------+
+   | nombre            |
+   +-------------------+
+   | Ramo de Girasoles |
+   | Kit de Plantación |
+   +-------------------+
+   
+   ```
+
+   
+
+6. Devuelve el producto que menos unidades tiene en stock.
+
+   ```sql
+   SELECT nombre
+   FROM producto
+   WHERE cantidad_stock = (
+       SELECT MIN(cantidad_stock)
+       FROM producto
+   );
+   
+   +----------------------------+
+   | nombre                     |
+   +----------------------------+
+   | Pala de jardín             |
+   | Kit de Jardinería Infantil |
+   +----------------------------+
+   
+   ```
+
+   
+
+7. Devuelve el nombre, los apellidos y el email de los empleados que están a
+  cargo de Alberto Soria.
+
+  ```sql
+  SELECT nombre_empleado, apellido1_empleado, apellido2_empleado, email_empleado
+  FROM empleado
+  WHERE codigo_jefe = (
+      SELECT codigo_empleado
+      FROM empleado
+      WHERE nombre_empleado = 'Alberto' AND apellido1_empleado = 'Soria'
+  );
+  +-----------------+--------------------+--------------------+---------------------------+
+  | nombre_empleado | apellido1_empleado | apellido2_empleado | email_empleado            |
+  +-----------------+--------------------+--------------------+---------------------------+
+  | Felipe          | Rosas              | Marquez            | frosas@jardineria.es      |
+  | Juan Carlos     | Ortiz              | Serrano            | cortiz@jardineria.es      |
+  | Carlos          | Soria              | Jimenez            | csoria@jardineria.es      |
+  | Emmanuel        | Magaña             | Perez              | manu@jardineria.es        |
+  | Francois        | Fignon             |                    | ffignon@gardening.com     |
+  | Michael         | Bolton             |                    | mbolton@gardening.com     |
+  | Hilary          | Washington         |                    | hwashington@gardening.com |
+  | Nei             | Nishikori          |                    | nnishikori@gardening.com  |
+  | Amy             | Johnson            |                    | ajohnson@gardening.com    |
+  | Kevin           | Fallmer            |                    | kfalmer@gardening.com     |
+  +-----------------+--------------------+--------------------+---------------------------+
+  
+  ```
+
+  
+
+  ### Subconsultas con ALL y ANY
+
+8. Devuelve el nombre del cliente con mayor límite de crédito.
+
+   ```sql
+   SELECT nombre_cliente
+   FROM cliente
+   WHERE limite_credito >= ALL (
+       SELECT limite_credito
+       FROM cliente
+   );
+   
+   +----------------+
+   | nombre_cliente |
+   +----------------+
+   | Tendo Garden   |
+   +----------------+
+   ```
+
+   
+
+9. Devuelve el nombre del producto que tenga el precio de venta más caro.
+
+   ```sql
+   SELECT nombre
+   FROM producto
+   WHERE precio_venta >= ANY (
+       SELECT precio_venta
+       FROM producto
+   );
+   +----------------------------+
+   | nombre                     |
+   +----------------------------+
+   | Ramo de Rosas Rojas        |
+   | Caja de Rosas Blancas      |
+   | Bouquet de Tulipanes       |
+   | Orquídea Phalaenopsis      |
+   | Cesta de Plantas Variadas  |
+   | Ramo de Girasoles          |
+   | Lavanda                    |
+   | Helechos                   |
+   | Amapolas                   |
+   | Pala de jardín             |
+   | Tijeras de podar           |
+   | Regadera                   |
+   | Menta                      |
+   | Romero                     |
+   | Albahaca                   |
+   | Manzano                    |
+   | Limón                      |
+   | Naranjo                    |
+   | Dalia                      |
+   | Azalea                     |
+   | Begonia                    |
+   | Semillas de Tomate         |
+   | Kit de Plantación          |
+   | Fertilizante Orgánico      |
+   | Terrario de Suculentas     |
+   | Kit de Jardinería Infantil |
+   | Set de Macetas de Cerámica |
+   +----------------------------+
+   ```
+
+   
+
+10. Devuelve el producto que menos unidades tiene en stock.
+
     ```
+    SELECT nombre
+    FROM producto
+    WHERE cantidad_stock <= ALL (
+        SELECT cantidad_stock
+        FROM producto
+    );
+    
+    +----------------------------+
+    | nombre                     |
+    +----------------------------+
+    | Pala de jardín             |
+    | Kit de Jardinería Infantil |
+    +----------------------------+
+    ```
+
+    
+
+    ### Subconsultas con IN y NOT IN
+
+11. Devuelve el nombre, apellido1 y cargo de los empleados que no
+    representen a ningún cliente.
+
+    ```sql
+    SELECT nombre_empleado, apellido1_empleado, apellido2_empleado, puesto_empleado.nombre_puesto
+    FROM empleado
+    JOIN puesto_empleado ON empleado.codigo_puesto_empleado = puesto_empleado.codigo_puesto_empleado
+    WHERE codigo_empleado NOT IN (
+        SELECT DISTINCT codigo_rep_ventas
+        FROM cliente
+        WHERE codigo_rep_ventas IS NOT NULL
+    );
+    
+    +-----------------+--------------------+--------------------+-----------------------+
+    | nombre_empleado | apellido1_empleado | apellido2_empleado | nombre_puesto         |
+    +-----------------+--------------------+--------------------+-----------------------+
+    | Marcos          | Magaña             | Perez              | Director General      |
+    | Ruben           | López              | Martinez           | Subdirector Marketing |
+    | Alberto         | Soria              | Carrasco           | Subdirector Ventas    |
+    | Maria           | Solís              | Jerez              | Secretaria            |
+    | Carlos          | Soria              | Jimenez            | Director Oficina      |
+    | Emmanuel        | Magaña             | Perez              | Director Oficina      |
+    | Francois        | Fignon             |                    | Director Oficina      |
+    | Michael         | Bolton             |                    | Director Oficina      |
+    | Hilary          | Washington         |                    | Director Oficina      |
+    | Nei             | Nishikori          |                    | Director Oficina      |
+    | Amy             | Johnson            |                    | Director Oficina      |
+    | Kevin           | Fallmer            |                    | Director Oficina      |
+    +-----------------+--------------------+--------------------+-----------------------+
+    ```
+
+    
+
+12. Devuelve un listado que muestre solamente los clientes que no han
+    realizado ningún pago.
+
+    ```sql
+    SELECT codigo_cliente, nombre_cliente, codigo_ciudad, codigo_postal, limite_credito, codigo_rep_ventas
+    FROM cliente
+    WHERE codigo_cliente NOT IN (
+        SELECT DISTINCT codigo_cliente
+        FROM pago
+    );
+    
+    +----------------+-----------------------------+---------------+---------------+----------------+-------------------+
+    | codigo_cliente | nombre_cliente              | codigo_ciudad | codigo_postal | limite_credito | codigo_rep_ventas |
+    +----------------+-----------------------------+---------------+---------------+----------------+-------------------+
+    |              6 | Lasas S.A.                  |             2 | 28945         |      154310.00 |                12 |
+    |              8 | Club Golf Puerta del hierro |             3 | 28930         |       40000.00 |                14 |
+    |             10 | DaraDistribuciones          |             9 | 28946         |       50000.00 |                16 |
+    |             11 | Madrileña de riegos         |             8 | 28943         |       20000.00 |                17 |
+    |             12 | Lasas S.A.                  |             5 | 28945         |       15431.00 |                19 |
+    |             17 | Flowers, S.A                |             2 | 24586         |        3500.00 |                25 |
+    |             18 | Naturajardin                |             1 | 28011         |        5050.00 |                27 |
+    |             20 | Americh Golf Management SL  |             8 | 12320         |       20000.00 |                30 |
+    |             21 | Aloha                       |             6 | 35488         |       50000.00 |                31 |
+    |             22 | El Prat                     |             5 | 12320         |       30000.00 |                10 |
+    |             24 | Vivero Humanes              |             1 | 28970         |        7430.00 |                24 |
+    |             25 | Fuenla City                 |             7 | 28574         |        4500.00 |                24 |
+    |             29 | Top Campo                   |             2 | 28574         |        5500.00 |                31 |
+    |             31 | Campohermoso                |             8 | 28945         |        3250.00 |                 5 |
+    |             32 | france telecom              |             6 | 75010         |       10000.00 |                 6 |
+    |             33 | Musée du Louvre             |             2 | 75058         |       30000.00 |                 9 |
+    |             36 | Flores S.L.                 |             9 | 29643         |        6000.00 |                12 |
+    |             37 | The Magic Garden            |             8 | 65930         |       10000.00 |                 8 |
+    +----------------+-----------------------------+---------------+---------------+----------------+-------------------+
+    
+    ```
+
+    
+
+13. Devuelve un listado que muestre solamente los clientes que sí han realizado
+    algún pago.
+
+    ```sql
+    SELECT codigo_cliente, nombre_cliente, codigo_ciudad, codigo_postal, limite_credito, codigo_rep_ventas
+    FROM cliente
+    WHERE codigo_cliente IN (
+        SELECT DISTINCT codigo_cliente
+        FROM pago
+    );
+    
+    +----------------+--------------------------------+---------------+---------------+----------------+-------------------+
+    | codigo_cliente | nombre_cliente                 | codigo_ciudad | codigo_postal | limite_credito | codigo_rep_ventas |
+    +----------------+--------------------------------+---------------+---------------+----------------+-------------------+
+    |              1 | GoldFish Garden                |             1 | 24006         |        3000.00 |                 5 |
+    |              3 | Gardening Associates           |             1 | 24010         |        6000.00 |                 6 |
+    |              4 | Gerudo Valley                  |             1 | 85495         |       12000.00 |                 9 |
+    |              5 | Tendo Garden                   |             2 | 696969        |      600000.00 |                 8 |
+    |              7 | Beragua                        |             3 | 28942         |       20000.00 |                13 |
+    |              9 | Naturagua                      |             4 | 28947         |       32000.00 |                16 |
+    |             13 | Camunas Jardines S.L.          |             9 | 28145         |       16481.00 |                21 |
+    |             14 | Dardena S.A.                   |             6 | 28003         |      321000.00 |                22 |
+    |             15 | Jardin de Flores               |             5 | 28950         |       40000.00 |                24 |
+    |             16 | Flores Marivi                  |             3 | 28945         |        1500.00 |                24 |
+    |             19 | Golf S.A.                      |             9 | 38297         |       30000.00 |                28 |
+    |             23 | Sotogrande                     |             2 | 11310         |       60000.00 |                16 |
+    |             26 | Jardines y Mansiones Cactus SL |             6 | 29874         |       76000.00 |                25 |
+    |             27 | Jardinerías Matías SL          |             5 | 37845         |      100500.00 |                24 |
+    |             28 | Agrojardin                     |             3 | 28904         |        8040.00 |                30 |
+    |             30 | Jardineria Sara                |             4 | 27584         |        7500.00 |                10 |
+    |             35 | Tutifruti S.A                  |             1 | 2000          |       10000.00 |                24 |
+    |             38 | El Jardin Viviente S.L         |             5 | 2003          |        8000.00 |                24 |
+    +----------------+--------------------------------+---------------+---------------+----------------+-------------------+
+    
+    
+    ```
+
+    
+
+14. Devuelve un listado de los productos que nunca han aparecido en un
+    pedido.
+
+    ```sql
+    SELECT codigo_producto, nombre, codigo_gama, cantidad_stock, precio_venta, descripcion, codigo_dimensiones
+    FROM producto
+    WHERE codigo_producto NOT IN (
+        SELECT DISTINCT codigo_producto
+        FROM detalle_pedido
+    );
+    
+    +-----------------+-----------------------+-------------+----------------+--------------+-----------------------------------+--------------------+
+    | codigo_producto | nombre                | codigo_gama | cantidad_stock | precio_venta | descripcion                       | codigo_dimensiones |
+    +-----------------+-----------------------+-------------+----------------+--------------+-----------------------------------+--------------------+
+    | PRD002          | Caja de Rosas Blancas |           2 |             30 |        25.50 | Caja de rosas blancas para regalo | DIM002             |
+    +-----------------+-----------------------+-------------+----------------+--------------+-----------------------------------+--------------------+
+    ```
+
+    
+
+15. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos
+    empleados que no sean representante de ventas de ningún cliente.
+
+    ```sql
+    SELECT e.nombre_empleado, e.apellido1_empleado, e.apellido2_empleado, p.nombre_puesto, t.telefono_oficina
+    FROM empleado e
+    JOIN puesto_empleado p ON e.codigo_puesto_empleado = p.codigo_puesto_empleado
+    JOIN oficina o ON e.codigo_oficina = o.codigo_oficina
+    JOIN telefono_oficina t ON o.codigo_oficina = t.codigo_oficina
+    WHERE e.codigo_empleado NOT IN (
+        SELECT DISTINCT codigo_rep_ventas
+        FROM cliente
+    );
+    +-----------------+--------------------+--------------------+-----------------------+------------------+
+    | nombre_empleado | apellido1_empleado | apellido2_empleado | nombre_puesto         | telefono_oficina |
+    +-----------------+--------------------+--------------------+-----------------------+------------------+
+    | Emmanuel        | Magaña             | Perez              | Director Oficina      | +34 93 3561182   |
+    | Hilary          | Washington         |                    | Director Oficina      | +1 215 837 0825  |
+    | Amy             | Johnson            |                    | Director Oficina      | +44 20 78772041  |
+    | Carlos          | Soria              | Jimenez            | Director Oficina      | +34 91 7514487   |
+    | Francois        | Fignon             |                    | Director Oficina      | +33 14 723 4404  |
+    | Michael         | Bolton             |                    | Director Oficina      | +1 650 219 4782  |
+    | Kevin           | Fallmer            |                    | Director Oficina      | +61 2 9264 2451  |
+    | Marcos          | Magaña             | Perez              | Director General      | +34 925 867231   |
+    | Ruben           | López              | Martinez           | Subdirector Marketing | +34 925 867231   |
+    | Alberto         | Soria              | Carrasco           | Subdirector Ventas    | +34 925 867231   |
+    | Maria           | Solís              | Jerez              | Secretaria            | +34 925 867231   |
+    | Nei             | Nishikori          |                    | Director Oficina      | +81 33 224 5000  |
+    +-----------------+--------------------+--------------------+-----------------------+------------------+
+    
+    ```
+
+    
+
+16. Devuelve las oficinas donde no trabajan ninguno de los empleados que
+    hayan sido los representantes de ventas de algún cliente que haya realizado
+    la compra de algún producto de la gama Frutales.
+
+    ```sql
+    SELECT DISTINCT o.codigo_oficina, o.codigo_ciudad, o.codigo_postal
+    FROM oficina o
+    LEFT JOIN empleado e ON o.codigo_oficina = e.codigo_oficina
+    LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_rep_ventas
+    LEFT JOIN pedido p ON c.codigo_cliente = p.codigo_cliente
+    LEFT JOIN detalle_pedido dp ON p.codigo_pedido = dp.codigo_pedido
+    LEFT JOIN producto prod ON dp.codigo_producto = prod.codigo_producto
+    LEFT JOIN gama_producto gama ON prod.codigo_gama = gama.codigo_gama
+    WHERE gama.gama = 'Frutales'
+    AND e.codigo_empleado IS NULL;
+    
+    
+    ```
+
+    
+
+17. Devuelve un listado con los clientes que han realizado algún pedido pero no
+    han realizado ningún pago.
+
+    ```sql
+    SELECT DISTINCT codigo_cliente, nombre_cliente
+    FROM cliente
+    WHERE codigo_cliente IN (
+        SELECT DISTINCT codigo_cliente
+        FROM pedido
+    ) 
+    AND codigo_cliente NOT IN (
+        SELECT DISTINCT codigo_cliente
+        FROM pago
+    );
+    
+    +----------------+-----------------------------+
+    | codigo_cliente | nombre_cliente              |
+    +----------------+-----------------------------+
+    |              6 | Lasas S.A.                  |
+    |              8 | Club Golf Puerta del hierro |
+    |             10 | DaraDistribuciones          |
+    |             11 | Madrileña de riegos         |
+    |             12 | Lasas S.A.                  |
+    |             17 | Flowers, S.A                |
+    |             18 | Naturajardin                |
+    |             20 | Americh Golf Management SL  |
+    |             21 | Aloha                       |
+    |             22 | El Prat                     |
+    |             24 | Vivero Humanes              |
+    |             25 | Fuenla City                 |
+    |             29 | Top Campo                   |
+    |             31 | Campohermoso                |
+    |             32 | france telecom              |
+    |             33 | Musée du Louvre             |
+    |             36 | Flores S.L.                 |
+    |             37 | The Magic Garden            |
+    +----------------+-----------------------------+
+    
+    ```
+
+    
+
+### Subconsultas con EXISTS y NOT EXISTS
+
+18. Devuelve un listado que muestre solamente los clientes que no han
+    realizado ningún pago.
+
+    ```sql
+    SELECT codigo_cliente, nombre_cliente
+    FROM cliente c
+    WHERE NOT EXISTS (
+        SELECT codigo_pago 
+        FROM pago p
+        WHERE p.codigo_cliente = c.codigo_cliente
+    );
+    
+    +----------------+-----------------------------+
+    | codigo_cliente | nombre_cliente              |
+    +----------------+-----------------------------+
+    |              6 | Lasas S.A.                  |
+    |              8 | Club Golf Puerta del hierro |
+    |             10 | DaraDistribuciones          |
+    |             11 | Madrileña de riegos         |
+    |             12 | Lasas S.A.                  |
+    |             17 | Flowers, S.A                |
+    |             18 | Naturajardin                |
+    |             20 | Americh Golf Management SL  |
+    |             21 | Aloha                       |
+    |             22 | El Prat                     |
+    |             24 | Vivero Humanes              |
+    |             25 | Fuenla City                 |
+    |             29 | Top Campo                   |
+    |             31 | Campohermoso                |
+    |             32 | france telecom              |
+    |             33 | Musée du Louvre             |
+    |             36 | Flores S.L.                 |
+    |             37 | The Magic Garden            |
+    +----------------+-----------------------------+
+    ```
+
+    
+
+19. Devuelve un listado que muestre solamente los clientes que sí han realizado
+    algún pago.
+
+    ```sql
+    SELECT codigo_cliente, nombre_cliente
+    FROM cliente c
+    WHERE EXISTS (
+        SELECT codigo_pago
+        FROM pago p
+        WHERE p.codigo_cliente = c.codigo_cliente
+    );
+    
+    +----------------+--------------------------------+
+    | codigo_cliente | nombre_cliente                 |
+    +----------------+--------------------------------+
+    |              1 | GoldFish Garden                |
+    |              3 | Gardening Associates           |
+    |              4 | Gerudo Valley                  |
+    |              5 | Tendo Garden                   |
+    |              7 | Beragua                        |
+    |              9 | Naturagua                      |
+    |             13 | Camunas Jardines S.L.          |
+    |             14 | Dardena S.A.                   |
+    |             15 | Jardin de Flores               |
+    |             16 | Flores Marivi                  |
+    |             19 | Golf S.A.                      |
+    |             23 | Sotogrande                     |
+    |             26 | Jardines y Mansiones Cactus SL |
+    |             27 | Jardinerías Matías SL          |
+    |             28 | Agrojardin                     |
+    |             30 | Jardineria Sara                |
+    |             35 | Tutifruti S.A                  |
+    |             38 | El Jardin Viviente S.L         |
+    +----------------+--------------------------------+
+    ```
+
+    
+
+20. Devuelve un listado de los productos que nunca han aparecido en un
+    pedido.
+
+    ```sql
+    SELECT codigo_producto, nombre
+    FROM producto p
+    WHERE NOT EXISTS (
+        SELECT dp.codigo_pedido
+        FROM detalle_pedido dp
+        WHERE dp.codigo_producto = p.codigo_producto
+    );
+    
+    +-----------------+-----------------------+
+    | codigo_producto | nombre                |
+    +-----------------+-----------------------+
+    | PRD002          | Caja de Rosas Blancas |
+    +-----------------+-----------------------+
+    ```
+
+    
+
+21. Devuelve un listado de los productos que han aparecido en un pedido
+    alguna vez.
+
+    ```sql
+    SELECT DISTINCT codigo_producto, nombre
+    FROM producto p
+    WHERE EXISTS (
+        SELECT dp.codigo_pedido
+        FROM detalle_pedido dp
+        WHERE dp.codigo_producto = p.codigo_producto
+    );
+    
+    +-----------------+----------------------------+
+    | codigo_producto | nombre                     |
+    +-----------------+----------------------------+
+    | PRD001          | Ramo de Rosas Rojas        |
+    | PRD003          | Bouquet de Tulipanes       |
+    | PRD004          | Orquídea Phalaenopsis      |
+    | PRD005          | Cesta de Plantas Variadas  |
+    | PRD006          | Ramo de Girasoles          |
+    | PRD007          | Lavanda                    |
+    | PRD008          | Helechos                   |
+    | PRD009          | Amapolas                   |
+    | PRD010          | Pala de jardín             |
+    | PRD011          | Tijeras de podar           |
+    | PRD012          | Regadera                   |
+    | PRD013          | Menta                      |
+    | PRD014          | Romero                     |
+    | PRD015          | Albahaca                   |
+    | PRD016          | Manzano                    |
+    | PRD017          | Limón                      |
+    | PRD018          | Naranjo                    |
+    | PRD019          | Dalia                      |
+    | PRD020          | Azalea                     |
+    | PRD021          | Begonia                    |
+    | PRD025          | Semillas de Tomate         |
+    | PRD026          | Kit de Plantación          |
+    | PRD027          | Fertilizante Orgánico      |
+    | PRD028          | Terrario de Suculentas     |
+    | PRD029          | Kit de Jardinería Infantil |
+    | PRD030          | Set de Macetas de Cerámica |
+    +-----------------+----------------------------+
+    ```
+
+    
+
+
+
+## Consultas variadas
+
+1. Devuelve el listado de clientes indicando el nombre del cliente y cuántos
+    pedidos ha realizado. Tenga en cuenta que pueden existir clientes que no
+    han realizado ningún pedido.
+
+  ```sql
+  SELECT c.nombre_cliente, COUNT(p.codigo_pedido) AS cantidad_pedidos
+  FROM cliente AS c
+  LEFT JOIN pedido AS p ON c.codigo_cliente = p.codigo_cliente
+  GROUP BY c.nombre_cliente;
+  
+  +--------------------------------+---------------+
+  | nombre_cliente                 | total_pedidos |
+  +--------------------------------+---------------+
+  | GoldFish Garden                |             2 |
+  | Gardening Associates           |             1 |
+  | Gerudo Valley                  |             1 |
+  | Tendo Garden                   |             1 |
+  | Lasas S.A.                     |             1 |
+  | Beragua                        |             1 |
+  | Club Golf Puerta del hierro    |             1 |
+  | Naturagua                      |             1 |
+  | DaraDistribuciones             |             1 |
+  | Madrileña de riegos            |             1 |
+  | Lasas S.A.                     |             1 |
+  | Camunas Jardines S.L.          |             1 |
+  | Dardena S.A.                   |             1 |
+  | Jardin de Flores               |             1 |
+  | Flores Marivi                  |             1 |
+  | Flowers, S.A                   |             1 |
+  | Naturajardin                   |             1 |
+  | Golf S.A.                      |             1 |
+  | Americh Golf Management SL     |             1 |
+  | Aloha                          |             1 |
+  | El Prat                        |             1 |
+  | Sotogrande                     |             1 |
+  | Vivero Humanes                 |             1 |
+  | Fuenla City                    |             1 |
+  | Jardines y Mansiones Cactus SL |             1 |
+  | Jardinerías Matías SL          |             1 |
+  | Agrojardin                     |             1 |
+  | Top Campo                      |             1 |
+  | Jardineria Sara                |             1 |
+  | Campohermoso                   |             1 |
+  | france telecom                 |             1 |
+  | Musée du Louvre                |             1 |
+  | Tutifruti S.A                  |             1 |
+  | Flores S.L.                    |             1 |
+  | The Magic Garden               |             1 |
+  | El Jardin Viviente S.L         |             1 |
+  +--------------------------------+---------------+
+  ```
+
+  
+
+2. Devuelve un listado con los nombres de los clientes y el total pagado por
+    cada uno de ellos. Tenga en cuenta que pueden existir clientes que no han
+    realizado ningún pago.
+
+  ```sql
+  SELECT c.nombre_cliente, IFNULL(SUM(p.total_pago), 0) AS total_pagado
+  FROM cliente AS c
+  LEFT JOIN pago AS p ON c.codigo_cliente = p.codigo_cliente
+  GROUP BY c.nombre_cliente;
+  
+  +--------------------------------+--------------+
+  | nombre_cliente                 | total_pagado |
+  +--------------------------------+--------------+
+  | GoldFish Garden                |      4000.00 |
+  | Gardening Associates           |     10926.00 |
+  | Gerudo Valley                  |     81849.00 |
+  | Tendo Garden                   |     23794.00 |
+  | Lasas S.A.                     |         0.00 |
+  | Beragua                        |      2390.00 |
+  | Club Golf Puerta del hierro    |         0.00 |
+  | Naturagua                      |       929.00 |
+  | DaraDistribuciones             |         0.00 |
+  | Madrileña de riegos            |         0.00 |
+  | Camunas Jardines S.L.          |      2246.00 |
+  | Dardena S.A.                   |      4160.00 |
+  | Jardin de Flores               |     12081.00 |
+  | Flores Marivi                  |      4399.00 |
+  | Flowers, S.A                   |         0.00 |
+  | Naturajardin                   |         0.00 |
+  | Golf S.A.                      |       232.00 |
+  | Americh Golf Management SL     |         0.00 |
+  | Aloha                          |         0.00 |
+  | El Prat                        |         0.00 |
+  | Sotogrande                     |       272.00 |
+  | Vivero Humanes                 |         0.00 |
+  | Fuenla City                    |         0.00 |
+  | Jardines y Mansiones Cactus SL |     18846.00 |
+  | Jardinerías Matías SL          |     10972.00 |
+  | Agrojardin                     |      8489.00 |
+  | Top Campo                      |         0.00 |
+  | Jardineria Sara                |      7863.00 |
+  | Campohermoso                   |         0.00 |
+  | france telecom                 |         0.00 |
+  | Musée du Louvre                |         0.00 |
+  | Tutifruti S.A                  |      3321.00 |
+  | Flores S.L.                    |         0.00 |
+  | The Magic Garden               |         0.00 |
+  | El Jardin Viviente S.L         |      1171.00 |
+  +--------------------------------+--------------+
+  ```
+
+  
+
+3. Devuelve el nombre de los clientes que hayan hecho pedidos en 2008
+    ordenados alfabéticamente de menor a mayor.
+
+  ```sql
+  SELECT DISTINCT c.nombre_cliente
+  FROM cliente AS c
+  JOIN pedido AS p ON c.codigo_cliente = p.codigo_cliente
+  WHERE YEAR(p.fecha_pedido) = 2008
+  ORDER BY c.nombre_cliente ASC;
+  
+  Empty set (0.13 sec)
+  ```
+
+  
+
+4. Devuelve el nombre del cliente, el nombre y primer apellido de su
+    representante de ventas y el número de teléfono de la oficina del
+
+  representante de ventas, de aquellos clientes que no hayan realizado ningún
+  pago
+
+  
+
+  ```sql
+  SELECT c.nombre_cliente AS 'Cliente', e.nombre_empleado, e.apellido1_empleado, tof.telefono_oficina AS 'Tel Oficina'
+  FROM cliente AS c
+  JOIN empleado AS e ON c.codigo_rep_ventas = e.codigo_empleado
+  JOIN oficina AS o ON e.codigo_oficina = o.codigo_oficina
+  JOIN telefono_oficina AS tof ON o.codigo_oficina = tof.codigo_oficina
+  LEFT JOIN pago AS p ON c.codigo_cliente = p.codigo_cliente
+  WHERE p.codigo_pago IS NULL;
+  
+  
+  +-----------------------------+-----------------+--------------------+-----------------+
+  | Cliente                     | nombre_empleado | apellido1_empleado | Tel Oficina     |
+  +-----------------------------+-----------------+--------------------+-----------------+
+  | Lasas S.A.                  | José Manuel     | Martinez           | +34 93 3561182  |
+  | Club Golf Puerta del hierro | Oscar           | Palma              | +34 93 3561182  |
+  | DaraDistribuciones          | Lionel          | Narvaez            | +33 14 723 4404 |
+  | Madrileña de riegos         | Laurent         | Serra              | +33 14 723 4404 |
+  | Lasas S.A.                  | Walter Santiago | Sanchez            | +1 650 219 4782 |
+  | Flowers, S.A                | Takuma          | Nomura             | +81 33 224 5000 |
+  | Naturajardin                | Larry           | Westfalls          | +44 20 78772041 |
+  | Americh Golf Management SL  | Julian          | Bellinelli         | +61 2 9264 2451 |
+  | Aloha                       | Mariko          | Kishi              | +61 2 9264 2451 |
+  | El Prat                     | Hilario         | Rodriguez          | +34 91 7514487  |
+  | Vivero Humanes              | Narumi          | Riko               | +81 33 224 5000 |
+  | Fuenla City                 | Narumi          | Riko               | +81 33 224 5000 |
+  | Top Campo                   | Mariko          | Kishi              | +61 2 9264 2451 |
+  | Campohermoso                | Felipe          | Rosas              | +34 925 867231  |
+  | france telecom              | Juan Carlos     | Ortiz              | +34 925 867231  |
+  | Musée du Louvre             | Lucio           | Campoamor          | +34 91 7514487  |
+  | Flores S.L.                 | José Manuel     | Martinez           | +34 93 3561182  |
+  | The Magic Garden            | Mariano         | López              | +34 91 7514487  |
+  +-----------------------------+-----------------+--------------------+-----------------+
+  ```
+
+
+
+5. Devuelve el listado de clientes donde aparezca el nombre del cliente, el
+    nombre y primer apellido de su representante de ventas y la ciudad donde
+    está su oficina.
+
+  ```sql
+  SELECT c.nombre_cliente AS 'Cliente', CONCAT(e.nombre_empleado,' ', e.apellido1_empleado) AS 'Representante Ventas', ci.nombre_ciudad AS 'Ciudad Oficina'
+  FROM cliente c
+  JOIN empleado e ON c.codigo_rep_ventas = e.codigo_empleado
+  JOIN oficina o ON e.codigo_oficina = o.codigo_oficina
+  JOIN ciudad ci ON o.codigo_ciudad = ci.codigo_ciudad;
+  
+  +--------------------------------+-------------------------+----------------------+
+  | Cliente                        | Representante Ventas    | Ciudad Oficina       |
+  +--------------------------------+-------------------------+----------------------+
+  | Lasas S.A.                     | José Manuel Martinez    | Barcelona            |
+  | Flores S.L.                    | José Manuel Martinez    | Barcelona            |
+  | Beragua                        | David Palma             | Barcelona            |
+  | Club Golf Puerta del hierro    | Oscar Palma             | Barcelona            |
+  | Camunas Jardines S.L.          | Marcus Paxton           | Boston               |
+  | Dardena S.A.                   | Lorena Paxton           | Boston               |
+  | Naturajardin                   | Larry Westfalls         | Londres              |
+  | Golf S.A.                      | John Walton             | Londres              |
+  | Tendo Garden                   | Mariano López           | Madrid               |
+  | The Magic Garden               | Mariano López           | Madrid               |
+  | Gerudo Valley                  | Lucio Campoamor         | Madrid               |
+  | Musée du Louvre                | Lucio Campoamor         | Madrid               |
+  | El Prat                        | Hilario Rodriguez       | Madrid               |
+  | Jardineria Sara                | Hilario Rodriguez       | Madrid               |
+  | Naturagua                      | Lionel Narvaez          | Paris                |
+  | DaraDistribuciones             | Lionel Narvaez          | Paris                |
+  | Sotogrande                     | Lionel Narvaez          | Paris                |
+  | Madrileña de riegos            | Laurent Serra           | Paris                |
+  | Lasas S.A.                     | Walter Santiago Sanchez | San Francisco        |
+  | Americh Golf Management SL     | Julian Bellinelli       | Sydney               |
+  | Agrojardin                     | Julian Bellinelli       | Sydney               |
+  | Aloha                          | Mariko Kishi            | Sydney               |
+  | Top Campo                      | Mariko Kishi            | Sydney               |
+  | GoldFish Garden                | Felipe Rosas            | Talavera de la Reina |
+  | Campohermoso                   | Felipe Rosas            | Talavera de la Reina |
+  | Gardening Associates           | Juan Carlos Ortiz       | Talavera de la Reina |
+  | france telecom                 | Juan Carlos Ortiz       | Talavera de la Reina |
+  | Jardin de Flores               | Narumi Riko             | Tokyo                |
+  | Flores Marivi                  | Narumi Riko             | Tokyo                |
+  | Vivero Humanes                 | Narumi Riko             | Tokyo                |
+  | Fuenla City                    | Narumi Riko             | Tokyo                |
+  | Jardinerías Matías SL          | Narumi Riko             | Tokyo                |
+  | Tutifruti S.A                  | Narumi Riko             | Tokyo                |
+  | El Jardin Viviente S.L         | Narumi Riko             | Tokyo                |
+  | Flowers, S.A                   | Takuma Nomura           | Tokyo                |
+  | Jardines y Mansiones Cactus SL | Takuma Nomura           | Tokyo                |
+  +--------------------------------+-------------------------+----------------------+
+  ```
+
+  
+
+6. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos
+    empleados que no sean representante de ventas de ningún cliente.
+
+  ```sql
+  SELECT CONCAT(e.nombre_empleado,' ', e.apellido1_empleado,' ', ifnull(e.apellido2_empleado,'')) AS 'Representante Ventas', pu.nombre_puesto AS 'Puesto', t.telefono_oficina AS 'Tel Oficina'
+  FROM empleado e
+  JOIN puesto_empleado pu ON e.codigo_puesto_empleado = pu.codigo_puesto_empleado
+  LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_rep_ventas
+  LEFT JOIN oficina o ON e.codigo_oficina = o.codigo_oficina
+  LEFT JOIN telefono_oficina t ON o.codigo_oficina = t.codigo_oficina
+  WHERE c.codigo_cliente IS NULL;
+  
+  +------------------------+-----------------------+-----------------+
+  | Representante Ventas   | Puesto                | Tel Oficina     |
+  +------------------------+-----------------------+-----------------+
+  | Marcos Magaña Perez    | Director General      | +34 925 867231  |
+  | Ruben López Martinez   | Subdirector Marketing | +34 925 867231  |
+  | Alberto Soria Carrasco | Subdirector Ventas    | +34 925 867231  |
+  | Maria Solís Jerez      | Secretaria            | +34 925 867231  |
+  | Carlos Soria Jimenez   | Director Oficina      | +34 91 7514487  |
+  | Emmanuel Magaña Perez  | Director Oficina      | +34 93 3561182  |
+  | Francois Fignon        | Director Oficina      | +33 14 723 4404 |
+  | Michael Bolton         | Director Oficina      | +1 650 219 4782 |
+  | Hilary Washington      | Director Oficina      | +1 215 837 0825 |
+  | Nei Nishikori          | Director Oficina      | +81 33 224 5000 |
+  | Amy Johnson            | Director Oficina      | +44 20 78772041 |
+  | Kevin Fallmer          | Director Oficina      | +61 2 9264 2451 |
+  +------------------------+-----------------------+-----------------+
+  
+  ```
+
+  
+
+7. Devuelve un listado indicando todas las ciudades donde hay oficinas y el
+    número de empleados que tiene.
+
+  ```sql
+  SELECT ci.nombre_ciudad AS Ciudad, COUNT(e.codigo_empleado) AS Num_Empleados
+  FROM ciudad ci
+  JOIN oficina o ON ci.codigo_ciudad = o.codigo_ciudad
+  JOIN empleado e ON o.codigo_oficina = e.codigo_oficina
+  GROUP BY ci.nombre_ciudad;
+  
+  +----------------------+---------------+
+  | Ciudad               | Num_Empleados |
+  +----------------------+---------------+
+  | Barcelona            |             4 |
+  | Boston               |             3 |
+  | Londres              |             3 |
+  | Madrid               |             4 |
+  | Paris                |             3 |
+  | San Francisco        |             2 |
+  | Sydney               |             3 |
+  | Talavera de la Reina |             6 |
+  | Tokyo                |             3 |
+  +----------------------+---------------+
+  ```
+
 
 
 Todos los archivos SQL incluido en este repositorio, fue creado por [Maritza Velasco Esteban](https://github.com/mvelascoe). Proporciona datos de ejemplo para la base de datos del proyecto.
